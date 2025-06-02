@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import {montserrat, openSans} from "@/utils";
 import "./globals.css";
+import {ThemeProvider} from "@/components/theme/theme-provider";
 
 export const metadata: Metadata = {
   title: "Cater Ease",
@@ -14,12 +15,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${montserrat.variable} ${openSans.variable} font-primary antialiased`}
       >
         <main>
-            {children}
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+            >
+                {children}
+            </ThemeProvider>
         </main>
       </body>
     </html>

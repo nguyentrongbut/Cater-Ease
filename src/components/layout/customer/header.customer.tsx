@@ -154,7 +154,7 @@ const HeaderCustomer = () => {
                                         </ButtonSheet>
                                     </nav>
                                 ) : (
-                                    <nav className="flex flex-col space-y-3 mt-6 ml-4 text-sm text-gray-500">
+                                    <nav className="flex flex-col space-y-3 mt-6 ml-4 text-sm text-gray-500 dark:text-gray-300">
                                         <ButtonSheet
                                             href="/cart"
                                             number={3}

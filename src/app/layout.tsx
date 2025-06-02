@@ -18,7 +18,9 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${openSans.variable} font-primary antialiased`}
       >
-        {children}
+        <main>
+            {children}
+        </main>
       </body>
     </html>
   );

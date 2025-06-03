@@ -1,3 +1,4 @@
+import * as React from "react";
 import Link from "next/link"
 import {Button} from "@/components/ui/button"
 import {Sheet, SheetContent, SheetTitle, SheetTrigger} from "@/components/ui/sheet"
@@ -8,13 +9,13 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import Image from "next/image";
 import {Separator} from "@/components/ui/separator";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
-import * as React from "react";
-import {ButtonBadge, ButtonIcon, ButtonSheet} from "@/components/button";
+import {ButtonBadge} from "@/components/button";
+import {LinkIcon, LinkSheet} from "@/components/link";
 
 const HeaderCustomer = () => {
     const isLoggedIn: boolean = false;
     return (
-        <nav className="border-b dark:border-gray-700 bg-background sticky top-0 z-50">
+        <nav className="border-b dark:border-gray-700 bg-background">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     <Logo></Logo>
@@ -65,20 +66,20 @@ const HeaderCustomer = () => {
                                             </b>
                                         </p>
                                         <DropdownMenuItem>
-                                            <ButtonIcon
+                                            <LinkIcon
                                                 href="/profile"
                                                 icon={<User></User>}
                                             >
                                                 Profile
-                                            </ButtonIcon>
+                                            </LinkIcon>
                                         </DropdownMenuItem>
                                         <DropdownMenuItem>
-                                            <ButtonIcon
+                                            <LinkIcon
                                                 href="/logout"
                                                 icon={<LogOut/>}
                                             >
                                                 Logout
-                                            </ButtonIcon>
+                                            </LinkIcon>
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
@@ -120,59 +121,59 @@ const HeaderCustomer = () => {
                                 {isLoggedIn ? (
                                     <nav
                                         className="flex flex-col space-y-3 mt-6 mx-4 text-sm text-gray-500 dark:text-gray-300">
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/"
                                             number={3}
                                         >
                                             Favorites
-                                        </ButtonSheet>
+                                        </LinkSheet>
 
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/cart"
                                         >
                                             Cart
-                                        </ButtonSheet>
+                                        </LinkSheet>
 
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/messages"
                                         >
                                             Messages
-                                        </ButtonSheet>
+                                        </LinkSheet>
 
                                         <Separator/>
 
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/profile"
                                         >
                                             Profile
-                                        </ButtonSheet>
+                                        </LinkSheet>
 
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/logout"
                                         >
                                             Logout
-                                        </ButtonSheet>
+                                        </LinkSheet>
                                     </nav>
                                 ) : (
                                     <nav className="flex flex-col space-y-3 mt-6 ml-4 text-sm text-gray-500 dark:text-gray-300">
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/cart"
                                             number={3}
                                         >
                                             Cart
-                                        </ButtonSheet>
+                                        </LinkSheet>
 
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/login"
                                         >
                                             Login
-                                        </ButtonSheet>
+                                        </LinkSheet>
 
-                                        <ButtonSheet
+                                        <LinkSheet
                                             href="/sign-up"
                                         >
                                             Sign Up
-                                        </ButtonSheet>
+                                        </LinkSheet>
                                     </nav>
                                 )}
                             </SheetContent>

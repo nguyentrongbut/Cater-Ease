@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import {SheetClose} from "@/components/ui/sheet";
 
-const ButtonSheet = ({href, number = 0, children}: {href:string, number?:number, children:React.ReactNode}) => {
+const LinkSheet = ({href, number = 0, children}: {href:string, number?:number, children:React.ReactNode}) => {
     return (
         <SheetClose asChild>
             <Link href={href} className="flex justify-between items-center">
@@ -17,4 +17,4 @@ const ButtonSheet = ({href, number = 0, children}: {href:string, number?:number,
     )
 }
 
-export default ButtonSheet;
+export default LinkSheet;

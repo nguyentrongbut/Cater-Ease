@@ -93,10 +93,10 @@ const HeaderCustomer = () => {
                                         <ShoppingCart className="h-5 w-5"/>
                                     }
                                 ></ButtonBadge>
-                                <Link href="/login">
+                                <Link href="/login" scroll={false}>
                                     <Button variant="ghost">Login</Button>
                                 </Link>
-                                <Link href="/sign-up">
+                                <Link href="/sign-up" scroll={false}>
                                     <Button>Sign Up</Button>
                                 </Link>
                             </>

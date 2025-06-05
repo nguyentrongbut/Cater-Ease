@@ -8,7 +8,7 @@ import {UseFormReturn} from "react-hook-form";
 import InputPassword from "@/components/input/input.password";
 
 export type LoginProps = {
-    onSubmit: (values: LoginForm, userType: "customer" | "caterer") => void;
+    onSubmit: (values: LoginForm) => void;
     form: UseFormReturn<LoginForm>;
 };
 
@@ -20,7 +20,7 @@ const LoginCustomer = ({
         <Form {...form}>
             <form
                 autoComplete="off"
-                onSubmit={form.handleSubmit((values) => onSubmit(values, "customer"))}
+                onSubmit={form.handleSubmit((values) => onSubmit(values))}
                 className="space-y-4">
                 <FormField
                     control={form.control}

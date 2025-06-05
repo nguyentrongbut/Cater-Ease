@@ -3,6 +3,8 @@ import type {Metadata} from "next";
 import {montserrat, openSans} from "@/utils";
 import "./globals.css";
 import {ThemeProvider} from "@/components/theme/theme-provider";
+import {Toaster} from "react-hot-toast";
+
 
 export const metadata: Metadata = {
     title: "Cater Ease",
@@ -26,6 +28,12 @@ export default function RootLayout({
             disableTransitionOnChange
         >
             {children}
+            <Toaster
+                position="top-center"
+                toastOptions={{
+                    className: 'text-sm dark:bg-black dark:text-white shadow-md rounded-lg',
+                }}
+            ></Toaster>
         </ThemeProvider>
         </body>
         </html>

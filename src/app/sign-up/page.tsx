@@ -1,16 +1,17 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 import Link from "next/link"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
-import {User, Building} from "lucide-react"
+import {User} from "lucide-react"
 import Logo from "@/components/common/logo";
 import SignUpCustomer from "@/app/sign-up/sign.up.customer";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
-import SignUpCaterer from "@/app/sign-up/sign.up.caterer";
+import {signUp} from "@/app/action";
+import {useRouter} from "next/navigation";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
     name: z.string().min(4, 'Name must be at least 4 characters long'),
@@ -32,6 +33,8 @@ export type SignUpForm = z.infer<typeof formSchema>;
 
 export default function RegisterPage() {
 
+    const router = useRouter();
+
     // 1. Define your form.
     const form = useForm<SignUpForm>({
         resolver: zodResolver(formSchema),
@@ -47,73 +50,58 @@ export default function RegisterPage() {
     });
 
     // 2. Define a submit handler.
-    async function onSubmit(values: SignUpForm, userType: "customer" | "caterer") {
-        console.log({...values, userType});
+    async function onSubmit(values: SignUpForm) {
+        console.log({...values});
+        try {
+            const result = await signUp(values);
+            if (!result) return toast.error('Registration failed. Please check your details!');
+            if (result === 201) {
+                toast.success('Registration successful! Please log in.');
+                router.push('/login');
+            }
+        } catch (error) {
+            console.error("Error during registration:", error);
+        }
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center p-4">
+        <div
+            className="min-h-screen bg-rose-50 dark:bg-background  flex items-center justify-center p-4">
             <div className="w-full max-w-2xl">
                 {/* Logo */}
-                <div className="flex flex-col justify-center items-center mb-8">
-                    <Logo size="xl"></Logo>
-                    <p className="text-gray-600 mt-2">Join our community and start your catering journey!</p>
+                <div className=" text-center mb-8">
+                   <div className="flex justify-center">
+                       <Logo size="xl"></Logo>
+                   </div>
+                    <p className="text-gray-600 mt-2 dark:text-gray-300">Join our community and start your catering
+                        journey!</p>
                 </div>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <User className="h-5 w-5"/>
+                            Sign Up
+                        </CardTitle>
+                        <CardDescription>Create your account to start booking amazing catering
+                            services</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <SignUpCustomer
+                            form={form}
+                            onSubmit={onSubmit}
+                        ></SignUpCustomer>
+                    </CardContent>
+                </Card>
 
-                <Tabs defaultValue="customer" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="customer">Sign Up as Customer</TabsTrigger>
-                        <TabsTrigger value="caterer">Sign Up as Caterer</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="customer">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <User className="h-5 w-5"/>
-                                    Customer Registration
-                                </CardTitle>
-                                <CardDescription>Create your account to start booking amazing catering
-                                    services</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <SignUpCustomer
-                                    form={form}
-                                    onSubmit={onSubmit}
-                                ></SignUpCustomer>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-
-                    <TabsContent value="caterer">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Building className="h-5 w-5"/>
-                                    Caterer Registration
-                                </CardTitle>
-                                <CardDescription>Join our platform and start growing your catering
-                                    business</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <SignUpCaterer
-                                    form={form}
-                                    onSubmit={onSubmit}
-                                ></SignUpCaterer>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                </Tabs>
-
-                <div className="mt-6 text-center">
-                    <p className="text-gray-600">
-                        Already have an account?
-                        <Link href="/login" className="text-primary hover:underline font-medium ml-2">
-                            Sign in here
-                        </Link>
-                    </p>
-                </div>
+            <div className="mt-6 text-center">
+                <p className="text-gray-600 dark:text-gray-300">
+                    Already have an account?
+                    <Link href="/login" className="text-primary hover:underline font-medium ml-2">
+                        Sign in here
+                    </Link>
+                </p>
             </div>
         </div>
-    )
+</div>
+)
 }

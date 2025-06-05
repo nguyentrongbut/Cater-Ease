@@ -10,7 +10,7 @@ import {UseFormReturn} from "react-hook-form";
 import {SignUpForm} from "@/app/sign-up/page";
 
 export type SignUpProps = {
-    onSubmit: (values: SignUpForm, userType: "customer" | "caterer") => void;
+    onSubmit: (values: SignUpForm) => void;
     form: UseFormReturn<SignUpForm>;
 };
 
@@ -22,7 +22,7 @@ const SignUpCustomer = ({
         <Form {...form}>
             <form
                 autoComplete="off"
-                onSubmit={form.handleSubmit((values) => onSubmit(values, "customer"))}
+                onSubmit={form.handleSubmit((values) => onSubmit(values))}
                 className="space-y-4">
                 <FormField
                     control={form.control}

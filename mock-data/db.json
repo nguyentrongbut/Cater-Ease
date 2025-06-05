@@ -1,0 +1,19 @@
+{
+  "auth": [
+    {
+      "id": "2",
+      "email": "lily@gmail.com",
+      "password": "Cloly1941@",
+      "role": "caterer"
+    },
+    {
+      "id": "fd26",
+      "name": "cloly",
+      "email": "cloly@gmail.com",
+      "phone": "1999191111",
+      "password": "Cloly281119@",
+      "address": "dddd",
+      "role": "customer"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import Logo from "@/components/common/logo";
-import {login} from "@/app/action";
+import {login} from "@/lib/actions/auth";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 

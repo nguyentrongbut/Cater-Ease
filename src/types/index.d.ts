@@ -16,3 +16,12 @@ export type TContactItem = TQuickLink & {
     icon: React.ReactElement;
     target?: string;
 }
+
+export type TUserInfo = {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    role: string;
+}

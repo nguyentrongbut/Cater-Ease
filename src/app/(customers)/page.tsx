@@ -1,11 +1,19 @@
+import SearchBar from "@/components/pages/home/search.bar";
 
 export default function Home() {
     return (
         <>
-            <div>
-                <h1 className="text-2xl font-bold text-center mt-10">Welcome to the Customers Page</h1>
-                <p className="text-center mt-4">This is a placeholder for customer-related content.</p>
-            </div>
+            <section className="relative bg-gradient-to-r from-orange-500 to-red-600 text-white py-20">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-secondary font-title dark:text-white">Premium Catering for Every Occasion</h1>
+                        <p className="text-xl mb-8 opacity-90 font-title">
+                            Discover exceptional caterers, browse menus, and book your perfect event catering with ease.
+                        </p>
+                        <SearchBar></SearchBar>
+                    </div>
+                </div>
+            </section>
         </>
     );
 }

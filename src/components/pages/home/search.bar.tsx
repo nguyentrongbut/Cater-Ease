@@ -17,7 +17,7 @@ const SearchBar = () => {
         <div className="bg-white rounded-lg p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto relative">
             <div className="flex-1 flex items-center relative">
                 <Input
-                    placeholder="Search cuisine, caterer, or location..."
+                    placeholder="Search event ..."
                     className="border-0 focus-visible:ring-0 text-gray-900 dark:bg-white"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -30,7 +30,7 @@ const SearchBar = () => {
                     )
                 }
             </div>
-            <Link href="/caterers">
+            <Link href="/events">
                 <Button size="lg" className="w-full">
                     <Search className="h-4 w-4 mr-2"/>
                     Search Caterers

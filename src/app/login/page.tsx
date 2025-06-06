@@ -62,7 +62,7 @@ export default function LoginPage() {
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
                     <div className="flex justify-center">
-                        <Logo size="xl"></Logo>
+                        <Logo size="lg"></Logo>
                     </div>
                     <p className="text-gray-600 mt-2 dark:text-white">Welcome back! Please sign in to your account.</p>
                 </div>

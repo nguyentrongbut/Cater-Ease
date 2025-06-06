@@ -30,7 +30,7 @@ const SearchBar = () => {
                     )
                 }
             </div>
-            <Link href="/events">
+            <Link href="/event-menus">
                 <Button size="lg" className="w-full">
                     <Search className="h-4 w-4 mr-2"/>
                     Search Caterers

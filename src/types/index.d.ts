@@ -25,3 +25,17 @@ export type TUserInfo = {
     address: string;
     role: string;
 }
+
+export type TListEventMenu = {
+    id: string,
+    name: string,
+    slug: string,
+    cuisine: string,
+    rating: number,
+    reviews: number,
+    location: string,
+    minOrder: number,
+    image: string,
+    specialties: string[],
+    priceRange: number,
+}

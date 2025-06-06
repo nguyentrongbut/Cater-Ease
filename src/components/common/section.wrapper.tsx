@@ -1,14 +1,17 @@
 import React from "react";
 import {cn} from "@/lib/utils";
 
-const SectionWrapper = ({children, color = false} : {children: React.ReactNode, color?:boolean}) => {
+const SectionWrapper = ({children, color = false, className}: {
+    children: React.ReactNode,
+    color?: boolean,
+    className?: string
+}) => {
     return (
-        <section
-            className={cn(
-                "py-12",
-                color && "bg-gray-50 dark:bg-darkGray"
-            )}
-        >
+        <section className={cn(
+            color ? "bg-gray-50 dark:bg-darkGray" : "",
+            "py-12",
+            className
+        )}>
             {children}
         </section>
     );

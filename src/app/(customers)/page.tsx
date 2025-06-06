@@ -1,8 +1,10 @@
 import SearchBar from "@/components/pages/home/search.bar";
+import QuickStats from "@/components/pages/home/quick.stats";
 
 export default function Home() {
     return (
         <>
+            {/* banner and search */}
             <section className="relative bg-gradient-to-r from-orange-500 to-red-600 text-white py-20">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
@@ -14,6 +16,9 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+            {/* end banner and search */}
+
+            <QuickStats></QuickStats>
         </>
     );
 }

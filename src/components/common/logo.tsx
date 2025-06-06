@@ -4,16 +4,16 @@ import Link from "next/link";
 const Logo = ({ size = "md" }: { size?: "md" | "lg" | "xl" }) => {
     const sizeMap = {
         md: {
-            logo: "h-8 w-8",
-            text: "text-xl",
-        },
-        lg: {
-            logo: "h-10 w-10",
+            logo: "size-10",
             text: "text-2xl",
         },
+        lg: {
+            logo: "size-12",
+            text: "text-4xl",
+        },
         xl: {
-            logo: "h-12 w-12",
-            text: "text-3xl",
+            logo: "size-14",
+            text: "text-6xl",
         },
     };
 
@@ -22,7 +22,7 @@ const Logo = ({ size = "md" }: { size?: "md" | "lg" | "xl" }) => {
     return (
         <Link href="/" className="flex items-end space-x-2">
             <ChefHat className={`${logo} text-primary`} />
-            <span className={`font-bold ${text}`}>CaterEase</span>
+            <span className={`font-bold font-title ${text}`}>CaterEase</span>
         </Link>
     );
 };

@@ -74,3 +74,24 @@ export const contactItems: TContactItem[] = [
         target: "_blank"
     }
 ]
+
+export const quickStatsData = [
+    {
+        number: "500",
+        title: "Verified Caterers",
+        plus: true
+    },
+    {
+        number: "10",
+        title: "Events Catered",
+        plus: true
+    },
+    {
+        number: "4.8",
+        title: "Average Rating"
+    },
+    {
+        number: "24/7" ,
+        title: "Customer Support"
+    }
+]

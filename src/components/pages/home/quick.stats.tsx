@@ -1,9 +1,10 @@
 import QuickStatsItem from "@/components/pages/home/quick.stats.item";
 import {quickStatsData} from "@/constants";
+import SectionWrapper from "@/components/common/section.wrapper";
 
 const QuickStats = () => {
     return (
-        <section className="py-12 bg-gray-50 dark:bg-background">
+        <SectionWrapper color>
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center font-title">
                     {quickStatsData.map((item) => (
@@ -16,7 +17,7 @@ const QuickStats = () => {
                     ))}
                 </div>
             </div>
-        </section>
+        </SectionWrapper>
     )
 }
 

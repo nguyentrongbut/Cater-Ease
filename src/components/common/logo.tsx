@@ -9,11 +9,11 @@ const Logo = ({ size = "md" }: { size?: "md" | "lg" | "xl" }) => {
         },
         lg: {
             logo: "size-12",
-            text: "text-4xl",
+            text: "text-3xl",
         },
         xl: {
             logo: "size-14",
-            text: "text-6xl",
+            text: "text-4xl",
         },
     };
 

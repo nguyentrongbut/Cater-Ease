@@ -9,7 +9,7 @@ import SignUpCustomer from "@/app/sign-up/sign.up.customer";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
-import {signUp} from "@/app/action";
+import {signUp} from "@/lib/actions/auth";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 

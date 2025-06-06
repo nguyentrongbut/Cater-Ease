@@ -11,7 +11,7 @@ export async function login(values: LoginForm) {
         const response = await axios.get(`${url}?email=${values.email}&password=${values.password}`);
         const data = response.data;
         if (data.length < 1) return null;
-        return data;
+        return data[0];
     } catch (error) {
         console.log(error);
         return null;
@@ -19,7 +19,6 @@ export async function login(values: LoginForm) {
 }
 
 export async function signUp(values: SignUpForm) {
-
     const {name, email, phone, password, address} = values;
     const role = 'customer';
     try {

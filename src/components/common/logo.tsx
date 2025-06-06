@@ -28,3 +28,4 @@ const Logo = ({ size = "md" }: { size?: "md" | "lg" | "xl" }) => {
 };
 
 export default Logo;
+

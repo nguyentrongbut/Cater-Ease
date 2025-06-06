@@ -21,7 +21,6 @@ const HeaderCustomer = () => {
                     {/* end desktop actions*/}
                     <div className="flex gap-2 md:hidden">
                         <MobileMenu></MobileMenu>
-
                         {/* dark mode */}
                         <ModeToggle></ModeToggle>
                         {/* end dark mode */}

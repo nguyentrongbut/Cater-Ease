@@ -2,9 +2,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import {TUserInfo} from "@/types";
 
 export default function useUserInfo() {
-    const [userInfo, setUserInfo] = useState<any>(null);
+    const [userInfo, setUserInfo] = useState<TUserInfo | null>(null);
 
     useEffect(() => {
         const loadUserInfo = () => {

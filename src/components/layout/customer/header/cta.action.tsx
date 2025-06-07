@@ -10,12 +10,16 @@ import {Button} from "@/components/ui/button";
 import React from "react";
 import useUserInfo from "@/hook/useUserInfo";
 import logout from "@/lib/logout";
+import {logoutServer} from "@/lib/actions/auth";
+import toast from "react-hot-toast";
 
 const CtaAction = () => {
     const userInfo = useUserInfo()
 
     // logout
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const result = await logoutServer();
+        if (!result) return toast.error('Logout failed. Please try again!');
         logout()
     }
     return (

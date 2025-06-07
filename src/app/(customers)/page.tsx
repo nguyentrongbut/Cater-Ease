@@ -3,6 +3,7 @@ import QuickStats from "@/components/pages/home/quick.stats";
 import SectionWrapper from "@/components/common/section.wrapper";
 import FeaturedEventMenu from "@/components/pages/home/featured.event.menu";
 import ContainerWrapper from "@/components/common/container.wrapper";
+import HowItWorks from "@/components/pages/home/how.it.works";
 
 export default function Home() {
     return (
@@ -24,6 +25,8 @@ export default function Home() {
             <QuickStats></QuickStats>
 
             <FeaturedEventMenu></FeaturedEventMenu>
+
+            <HowItWorks></HowItWorks>
         </>
     );
 }

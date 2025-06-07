@@ -5,6 +5,7 @@ import CardEventMenu from "@/components/pages/home/card.event.menu";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import {getFeaturedEventMenus} from "@/lib/actions/event.menus";
 import {TListEventMenu} from "@/types";
+import Heading from "@/components/common/Heading";
 
 const listEventMenus = await getFeaturedEventMenus();
 
@@ -13,7 +14,7 @@ const FeaturedEventMenu = () => {
         <SectionWrapper className="py-16">
             <ContainerWrapper>
                 <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-3xl font-bold">Featured Event Menu</h2>
+                    <Heading>Featured Event Menu</Heading>
                     <Link href="/event-menus">
                         <Button variant="ghost">View All</Button>
                     </Link>

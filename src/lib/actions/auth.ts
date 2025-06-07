@@ -15,7 +15,7 @@ export async function login(values: LoginForm) {
 
         if (data.length < 1) return null;
 
-        const {id, role, address, email, name, phone} = data[0];
+        const {id, role } = data[0];
 
         cookieStore.set({
             name: 'userInfo',
@@ -24,7 +24,7 @@ export async function login(values: LoginForm) {
             path: '/',
         });
 
-        return {id, name, email, phone, address};
+        return data[0];
     } catch (error) {
         console.log(error);
         return null;

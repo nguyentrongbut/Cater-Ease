@@ -5,17 +5,20 @@ import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
 import {TListEventMenu} from "@/types";
 import HeartToggle from "@/components/common/heart.toggle";
+import ImageWPlaceholder from "@/components/common/image.w.placeholder";
 
 const CardEventMenu = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
     return (
         <Card className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="relative">
-                <img
-                    src={eventMenu.image || "/placeholder.svg"}
-                    alt={eventMenu.name}
+                <ImageWPlaceholder
+                    width={400}
+                    height={200}
+                    src={eventMenu.image || "/placeholder-img.png"}
+                    alt={eventMenu.name || 'placeholder image cater ease'}
                     className="w-full h-48 object-cover"
                 />
-                <div className="absolute top-4 right-4 cursor-pointer">
+                <div className="absolute top-2 right-2 cursor-pointer">
                     <HeartToggle></HeartToggle>
                 </div>
             </div>
@@ -24,7 +27,7 @@ const CardEventMenu = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                 <div className="flex justify-between items-start">
                     <div>
                         <CardTitle className="text-lg">{eventMenu.name}</CardTitle>
-                        <CardDescription className="flex items-center gap-1 mt-1">
+                        <CardDescription className="flex items-center gap-1 mt-0.5">
                             <MapPin className="size-4" />
                             {eventMenu.location} • {eventMenu.cuisine}
                         </CardDescription>

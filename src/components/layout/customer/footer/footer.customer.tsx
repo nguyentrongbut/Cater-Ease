@@ -5,12 +5,13 @@ import QuickLinks from "@/components/layout/customer/footer/quick.links";
 import CompanyInfo from "@/components/layout/customer/footer/company.info";
 import NewLetter from "@/components/layout/customer/footer/new.letter";
 import FooterBottom from "@/components/layout/customer/footer/footer.bottom";
+import ContainerWrapper from "@/components/common/container.wrapper";
 
 const FooterCustomer = () => {
     return (
         <FooterWrapper>
             <div className="border-t dark:border-gray-700">
-                <div className="container mx-auto px-4 py-12">
+                <ContainerWrapper className="py-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <CompanyInfo></CompanyInfo>
                         <QuickLinks></QuickLinks>
@@ -23,7 +24,7 @@ const FooterCustomer = () => {
                         </div>
                     </div>
                     <FooterBottom></FooterBottom>
-                </div>
+                </ContainerWrapper>
             </div>
 
         </FooterWrapper>

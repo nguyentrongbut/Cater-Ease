@@ -39,3 +39,15 @@ export type TListEventMenu = {
     specialties: string[],
     priceRange: number,
 }
+
+export type TQuickStats = {
+    number: string;
+    title: string;
+    plus?: boolean;
+}
+
+export type THowItWorkItem = {
+    icon: React.ReactElement;
+    title: string;
+    desc: string;
+}

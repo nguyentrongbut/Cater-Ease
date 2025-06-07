@@ -1,4 +1,6 @@
-const QuickStatsItem = ({number, title, plus}: { number: string, title: string, plus?:boolean }) => {
+import {TQuickStats} from "@/types";
+
+const QuickStatsItem = ({number, title, plus}: TQuickStats) => {
     return (
         <div>
             <div className="text-3xl font-bold text-primary">{number}{plus && "+"}</div>

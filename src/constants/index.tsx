@@ -1,5 +1,5 @@
-import {Facebook, Instagram, Linkedin, Mail, MapPin, PhoneCall, Twitter} from "lucide-react";
-import {TContactItem, TQuickLink, TSocialItem} from "@/types";
+import {Calendar, ChefHat, Facebook, Instagram, Linkedin, Mail, MapPin, PhoneCall, Search, Twitter} from "lucide-react";
+import {TContactItem, THowItWorkItem, TQuickLink, TQuickStats, TSocialItem} from "@/types";
 
 const phone = "0326654301"
 const email = "cloly031128@gmail.com"
@@ -75,7 +75,7 @@ export const contactItems: TContactItem[] = [
     }
 ]
 
-export const quickStatsData = [
+export const quickStatsData: TQuickStats[] = [
     {
         number: "500",
         title: "Verified Caterers",
@@ -93,5 +93,23 @@ export const quickStatsData = [
     {
         number: "24/7" ,
         title: "Customer Support"
+    }
+]
+
+export const howItWorkItems: THowItWorkItem[] = [
+    {
+        icon: <Search className="text-primary size-8"/>,
+        title: "Search & Browse",
+        desc: "Find caterers by cuisine, location, or event type. Browse menus and read reviews."
+    },
+    {
+        icon: <Calendar className="text-primary size-8"/>,
+        title: "Book & Customize",
+        desc: "Select your menu, choose date and time, and customize your order details."
+    },
+    {
+        icon: <ChefHat className="text-primary size-8"/>,
+        title: "Enjoy Your Event",
+        desc: "Relax while professional caterers handle everything for your perfect event."
     }
 ]

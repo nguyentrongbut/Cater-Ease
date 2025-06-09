@@ -8,8 +8,16 @@ import {
 import Link from "next/link";
 import UpdateProfile from "@/components/pages/profile/update.profile";
 import ContainerWrapper from "@/components/common/container.wrapper";
+import {getProfile} from "@/lib/actions/account";
+import {redirect} from "next/navigation";
 
-const Profile = () => {
+const Profile = async () => {
+    const infoProfile = await getProfile();
+
+    if (!infoProfile) {
+       redirect('/login');
+    }
+
     return (
         <>
             <ContainerWrapper className="py-8">
@@ -29,7 +37,7 @@ const Profile = () => {
                     </BreadcrumbList>
                 </Breadcrumb>
 
-                <UpdateProfile></UpdateProfile>
+                <UpdateProfile infoProfile={infoProfile}></UpdateProfile>
             </ContainerWrapper>
         </>
     );

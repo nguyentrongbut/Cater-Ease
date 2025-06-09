@@ -23,10 +23,10 @@ export type TUserInfo = {
     email: string;
     phone: string;
     address: string;
-    role: string;
+    avatar?: string;
+    role?: string;
     password?: string;
     status?: string;
-    avatar?: string;
 }
 
 export type TListEventMenu = {

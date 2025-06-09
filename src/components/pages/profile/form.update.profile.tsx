@@ -10,24 +10,29 @@ import {z} from "zod";
 import {DialogClose} from "@/components/ui/dialog";
 import TabUploadImg from "@/components/pages/profile/tab.upload.img";
 import {TUserInfo} from "@/types";
+import toast from "react-hot-toast";
+import {updateProfile} from "@/lib/actions/account";
 
 const formSchema = z.object({
     avatar: z
         .union([
             z.string().url("Avatar must be a valid URL or an uploaded image file."),
             z.instanceof(File)
-        ])
-        .optional(),
+        ]),
     name: z.string().min(4, 'Name must be at least 4 characters long'),
     email: z.string().email('Invalid email address'),
     phone: z.string().min(10, 'Phone number must be at least 10 digits'),
     address: z.string().min(1, 'Address cannot be empty'),
 });
 
-export type ProfileForm = z.infer<typeof formSchema>;
+type ProfileForm = z.infer<typeof formSchema>;
+
+export type ProfileFormUpdate = ProfileForm & {
+    id: string;
+}
 
 
-const FormUpdateProfile = ({infoProfile}: { infoProfile: TUserInfo }) => {
+const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void, }) => {
     // 1. Define your form.
     const form = useForm<ProfileForm>({
         resolver: zodResolver(formSchema),
@@ -43,7 +48,14 @@ const FormUpdateProfile = ({infoProfile}: { infoProfile: TUserInfo }) => {
     // 2. Define a submit handler.
     async function onSubmit(values: ProfileForm) {
         try {
-            console.log('Form submitted with values:', values);
+            const formData = {id: infoProfile?.id, ...values};
+            const result = await updateProfile(formData)
+            console.log("Update profile result:", result);
+            if (!result) return toast.error('Update profile failed. Please try again.');
+            if (result === 200) {
+                toast.success('Update profile successfully.');
+                onClose?.();
+            }
         } catch (error) {
             console.error('Login error:', error);
         }
@@ -62,7 +74,7 @@ const FormUpdateProfile = ({infoProfile}: { infoProfile: TUserInfo }) => {
                         <FormItem>
                             <FormLabel>Avatar</FormLabel>
                             <FormControl>
-                                <TabUploadImg {...field} />
+                                <TabUploadImg value={field.value} onChange={field.onChange}/>
                             </FormControl>
                             <FormMessage/>
                         </FormItem>

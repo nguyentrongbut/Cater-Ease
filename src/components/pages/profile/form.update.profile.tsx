@@ -32,7 +32,7 @@ export type ProfileFormUpdate = ProfileForm & {
 }
 
 
-const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void, }) => {
+const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void }) => {
     // 1. Define your form.
     const form = useForm<ProfileForm>({
         resolver: zodResolver(formSchema),
@@ -50,14 +50,13 @@ const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onC
         try {
             const formData = {id: infoProfile?.id, ...values};
             const result = await updateProfile(formData)
-            console.log("Update profile result:", result);
             if (!result) return toast.error('Update profile failed. Please try again.');
             if (result === 200) {
                 toast.success('Update profile successfully.');
                 onClose?.();
             }
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('Error when update profile:', error);
         }
     }
 

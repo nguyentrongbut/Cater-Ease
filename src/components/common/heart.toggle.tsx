@@ -1,16 +1,30 @@
 'use client';
 
 import {Heart} from "lucide-react";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import HeartIcon from "@/components/icons/heart.icon";
 import toast from "react-hot-toast";
-import useUserInfo from "@/hook/useUserInfo";
 import {useRouter} from "next/navigation";
+import {getProfile} from "@/lib/actions/account";
+import {TUserInfo} from "@/types";
 
 const HeartToggle = () => {
     const [isLiked, setIsLiked] = useState(false);
-    const userInfo = useUserInfo()
     const router = useRouter();
+    const [infoProfile, setInfoProfile] = useState<TUserInfo | null>(null);
+
+    useEffect(() => {
+        const getInfoProfile = async () => {
+            try {
+                const profile = await getProfile();
+                setInfoProfile(profile);
+            } catch (err) {
+                console.error("Failed to fetch profile:", err);
+            }
+        };
+
+        getInfoProfile();
+    }, []);
 
     const handleLikeToggle = () => {
         setIsLiked(!isLiked);
@@ -35,10 +49,10 @@ const HeartToggle = () => {
         router.push('/login');
     };
 
-    if (!userInfo) {
+    if (!infoProfile) {
         return (
             <div onClick={handleLoginRedirect} className="p-3 bg-background/90 rounded-lg cursor-pointer">
-                <Heart className="size-4 hover:text-primary" />
+                <Heart className="size-4 hover:text-primary"/>
             </div>
         );
     }

@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Upload } from "lucide-react";
 import {ChangeEvent, useState} from "react";
+import NativeImageWithPlaceholder from "@/components/common/native.img.w.placeholder";
 
 const TabUploadImg = ({ onChange } : {onChange : (val: string | File) => void}) => {
     const [preview, setPreview] = useState("/default-avatar.png");
@@ -33,11 +34,11 @@ const TabUploadImg = ({ onChange } : {onChange : (val: string | File) => void}) 
             <TabsContent value="upload">
                 <div className="flex justify-center p-2">
                     <div className="relative size-20 rounded-full overflow-hidden group">
-                        <img
+                        <NativeImageWithPlaceholder
                             src={preview || "/default-avatar.png"}
                             alt="profile"
                             className="w-full h-full object-cover"
-                        />
+                        ></NativeImageWithPlaceholder>
                         <label className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                             <Upload className="text-white size-5" />
                             <input

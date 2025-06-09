@@ -1,24 +1,23 @@
-'use client'
 import {Sheet, SheetContent, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
 import {Button} from "@/components/ui/button";
 import {Menu} from "lucide-react";
 import Logo from "@/components/common/logo";
-import {LinkSheet} from "@/components/link";
+import { LinkSheet} from "@/components/link";
 import {Separator} from "@/components/ui/separator";
-import React from "react";
-import useUserInfo from "@/hook/useUserInfo";
-import logout from "@/lib/logout";
 import {logoutServer} from "@/lib/actions/auth";
-import toast from "react-hot-toast";
+import {getProfile} from "@/lib/actions/account";
+import {redirect} from "next/navigation";
 
-const MobileMenu = () => {
-    const userInfo = useUserInfo()
+const MobileMenu = async () => {
+    const infoProfile = await getProfile();
 
     // logout
     const handleLogout = async () => {
+        'use server'
         const result = await logoutServer();
-        if (!result) return toast.error('Logout failed. Please try again!');
-        logout()
+        if (result) {
+            redirect('/');
+        }
     }
 
     return (
@@ -32,7 +31,7 @@ const MobileMenu = () => {
                 <SheetTitle className="mt-4">
                     <Logo></Logo>
                 </SheetTitle>
-                {userInfo ? (
+                {infoProfile ? (
                     <nav
                         className="flex flex-col space-y-3 mt-6 mx-4 text-sm text-gray-500 dark:text-gray-300">
                         <LinkSheet
@@ -62,11 +61,13 @@ const MobileMenu = () => {
                             Profile
                         </LinkSheet>
 
-                       <div onClick={handleLogout}>
-                           <LinkSheet>
-                               Logout
-                           </LinkSheet>
-                       </div>
+                        <form action={handleLogout}>
+                            <button type="submit">
+                                <LinkSheet>
+                                    Logout
+                                </LinkSheet>
+                            </button>
+                        </form>
                     </nav>
                 ) : (
                     <nav className="flex flex-col space-y-3 mt-6 ml-4 text-sm text-gray-500 dark:text-gray-300">

@@ -38,14 +38,6 @@ export default function LoginPage() {
             const result = await login(values);
             if (!result) return toast.error('Login failed. Please check your credentials!');
             const role = result[0]?.role || '';
-            if (result) {
-                localStorage.setItem(
-                    'userInfo',
-                    JSON.stringify(result)
-                );
-                // Trigger event
-                window.dispatchEvent(new Event('userInfoChanged'));
-            }
 
             toast.success('Login successful!');
             if (role !== 'caterer') return router.push('/')

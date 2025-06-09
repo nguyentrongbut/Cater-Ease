@@ -15,7 +15,7 @@ import toast from "react-hot-toast";
 
 const formSchema = z.object({
     name: z.string().min(4, 'Name must be at least 4 characters long'),
-    email: z.string().email({message: 'Invalid email address'}),
+    email: z.string().email('Invalid email address'),
     phone: z.string().min(10, 'Phone number must be at least 10 digits'),
     password: z.string()
         .min(12, 'Password must be at least 12 characters long')

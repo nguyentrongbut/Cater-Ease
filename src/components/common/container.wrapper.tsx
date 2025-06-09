@@ -3,7 +3,7 @@ import {cn} from "@/lib/utils";
 
 const ContainerWrapper = ({ children, className }: { children: React.ReactNode, className?:string }) => {
   return (
-    <div className={cn("container mx-auto px-4 md:px-0", className)}>
+    <div className={cn("container mx-auto px-4 2xl:px-20", className)}>
       {children}
     </div>
   );

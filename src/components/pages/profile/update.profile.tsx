@@ -51,7 +51,7 @@ const UpdateProfile = ({infoProfile}: { infoProfile: TUserInfo }) => {
                     <Separator className="my-4" />
                     <div className="flex items-center justify-between">
                         <InfoProfile title="password" name={maskString(infoProfile?.password)}></InfoProfile>
-                        <DialogChangePassword></DialogChangePassword>
+                        <DialogChangePassword infoProfile={infoProfile}></DialogChangePassword>
                     </div>
                 </div>
             </CardProfile>

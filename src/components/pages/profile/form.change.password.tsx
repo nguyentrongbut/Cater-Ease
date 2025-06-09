@@ -8,6 +8,9 @@ import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {DialogClose} from "@/components/ui/dialog";
+import {TUserInfo} from "@/types";
+import toast from "react-hot-toast";
+import {changePassword} from "@/lib/actions/account";
 
 const formSchema = z.object({
     password: z.string()
@@ -19,14 +22,14 @@ const formSchema = z.object({
         .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character')
         .regex(/[A-Z]/, 'Password must contain at least one uppercase letter'),
     confirmNewPassword: z.string().min(1, 'Please confirm your password'),
-}).refine((data) => data.password === data.confirmNewPassword, {
+}).refine((data) => data.newPassword === data.confirmNewPassword, {
     message: "Passwords do not match",
     path: ["confirmNewPassword"],
 });
 
 export type FormChangePassword = z.infer<typeof formSchema>;
 
-const FormChangePassword = () => {
+const FormChangePassword = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void }) => {
     // 1. Define your form.
     const form = useForm<FormChangePassword>({
         resolver: zodResolver(formSchema),
@@ -38,11 +41,24 @@ const FormChangePassword = () => {
     });
 
     // 2. Define a submit handler.
-    async function onSubmit() {
-        try {
+    async function onSubmit(values: FormChangePassword) {
+        const id = infoProfile.id;
+        const passwordProfile = infoProfile?.password || '';
+        const {password, newPassword} = values;
 
+        const isValid = password === passwordProfile;
+
+        if (!isValid) return toast.error("Old password is incorrect. Please try again.");
+
+        try {
+            const result = await changePassword(id, newPassword);
+            if (!result) return toast.error('Change password failed. Please try again.');
+            if (result === 200) {
+                toast.success('Change password successfully.');
+                onClose?.();
+            }
         } catch (error) {
-            console.error("Error during registration:", error);
+            console.error("Error when change password:", error);
         }
     }
 

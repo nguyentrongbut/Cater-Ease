@@ -21,7 +21,7 @@ export async function getProfile() {
 
         if (!id) return null;
 
-        const data:TUserInfo[] = await cachedAxiosGet(
+        const data: TUserInfo[] = await cachedAxiosGet(
             `${url}?id=${id}`,
             ['profile']
         );
@@ -59,6 +59,28 @@ export async function updateProfile(infoProfile: ProfileFormUpdate) {
         return 200;
     } catch (error) {
         console.error("Error in update profile:", error);
+        return null;
+    }
+}
+
+export async function changePassword(id: string, newPassword: string) {
+    try {
+        const response = await axios.patch(`${url}/${id}`, {
+                password: newPassword,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+        if (response.data.length < 1) return null;
+
+        revalidateTag('profile');
+
+        return 200;
+    } catch (error) {
+        console.error("Error in change password:", error);
         return null;
     }
 }

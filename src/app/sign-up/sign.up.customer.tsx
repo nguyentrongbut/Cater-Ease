@@ -12,6 +12,7 @@ import {SignUpForm} from "@/app/sign-up/page";
 export type SignUpProps = {
     onSubmit: (values: SignUpForm) => void;
     form: UseFormReturn<SignUpForm>;
+    isSubmitting: boolean;
 };
 
 const SignUpCustomer = ({

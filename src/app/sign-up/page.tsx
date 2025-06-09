@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, {useState} from "react"
 import Link from "next/link"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
 import {User} from "lucide-react"
@@ -32,6 +32,7 @@ const formSchema = z.object({
 export type SignUpForm = z.infer<typeof formSchema>;
 
 export default function RegisterPage() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const router = useRouter();
 
@@ -51,7 +52,7 @@ export default function RegisterPage() {
 
     // 2. Define a submit handler.
     async function onSubmit(values: SignUpForm) {
-        console.log({...values});
+        setIsSubmitting(true);
         try {
             const result = await signUp(values);
             if (!result) return toast.error('Registration failed. Please check your details!');
@@ -61,6 +62,8 @@ export default function RegisterPage() {
             }
         } catch (error) {
             console.error("Error during registration:", error);
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -89,6 +92,7 @@ export default function RegisterPage() {
                         <SignUpCustomer
                             form={form}
                             onSubmit={onSubmit}
+                            isSubmitting={isSubmitting}
                         ></SignUpCustomer>
                     </CardContent>
                 </Card>

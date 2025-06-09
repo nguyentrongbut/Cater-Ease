@@ -3,7 +3,7 @@
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import React from "react";
+import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
@@ -31,8 +31,8 @@ export type ProfileFormUpdate = ProfileForm & {
     id: string;
 }
 
-
-const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void }) => {
+const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void, }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     // 1. Define your form.
     const form = useForm<ProfileForm>({
         resolver: zodResolver(formSchema),
@@ -47,6 +47,7 @@ const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onC
 
     // 2. Define a submit handler.
     async function onSubmit(values: ProfileForm) {
+        setIsSubmitting(true);
         try {
             const formData = {id: infoProfile?.id, ...values};
             const result = await updateProfile(formData)
@@ -57,6 +58,8 @@ const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onC
             }
         } catch (error) {
             console.error('Error when update profile:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -135,7 +138,7 @@ const FormUpdateProfile = ({infoProfile, onClose}: { infoProfile: TUserInfo, onC
                     <DialogClose asChild>
                         <Button type="button" variant="outline">Cancel</Button>
                     </DialogClose>
-                    <Button type="submit">
+                    <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
                         Update Profile
                     </Button>
                 </div>

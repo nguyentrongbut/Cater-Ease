@@ -3,7 +3,7 @@
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {InputPassword} from "@/components/input";
 import {Button} from "@/components/ui/button";
-import type React from "react";
+import React, {useState} from "react";
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -30,6 +30,7 @@ const formSchema = z.object({
 export type FormChangePassword = z.infer<typeof formSchema>;
 
 const FormChangePassword = ({infoProfile, onClose}: { infoProfile: TUserInfo, onClose?: () => void }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     // 1. Define your form.
     const form = useForm<FormChangePassword>({
         resolver: zodResolver(formSchema),
@@ -42,6 +43,7 @@ const FormChangePassword = ({infoProfile, onClose}: { infoProfile: TUserInfo, on
 
     // 2. Define a submit handler.
     async function onSubmit(values: FormChangePassword) {
+        setIsSubmitting(true);
         const id = infoProfile.id;
         const passwordProfile = infoProfile?.password || '';
         const {password, newPassword} = values;
@@ -59,6 +61,8 @@ const FormChangePassword = ({infoProfile, onClose}: { infoProfile: TUserInfo, on
             }
         } catch (error) {
             console.error("Error when change password:", error);
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -120,7 +124,7 @@ const FormChangePassword = ({infoProfile, onClose}: { infoProfile: TUserInfo, on
                     <DialogClose asChild>
                         <Button type="button" variant="outline">Cancel</Button>
                     </DialogClose>
-                    <Button type="submit">
+                    <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
                         Change Password
                     </Button>
                 </div>

@@ -10,11 +10,13 @@ import InputPassword from "@/components/input/input.password";
 export type LoginProps = {
     onSubmit: (values: LoginForm) => void;
     form: UseFormReturn<LoginForm>;
+    isSubmitting: boolean;
 };
 
 const LoginCustomer = ({
                            onSubmit,
                            form,
+                            isSubmitting
                        }: LoginProps) => {
     return (
         <Form {...form}>
@@ -58,7 +60,7 @@ const LoginCustomer = ({
                     </Link>
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" isLoading={isSubmitting} disabled={isSubmitting}>
                     Sign In
                 </Button>
             </form>

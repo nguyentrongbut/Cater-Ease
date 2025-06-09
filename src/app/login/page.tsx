@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, {useState} from "react";
 import Link from "next/link"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card"
 import LoginCustomer from "@/app/login/login.customer";
@@ -20,6 +20,7 @@ const formSchema = z.object({
 export type LoginForm = z.infer<typeof formSchema>;
 
 export default function LoginPage() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const router = useRouter();
 
@@ -34,6 +35,7 @@ export default function LoginPage() {
 
     // 2. Define a submit handler.
     async function onSubmit(values: LoginForm) {
+        setIsSubmitting(true);
         try {
             const result = await login(values);
             if (!result) return toast.error('Login failed. Please check your credentials!');
@@ -44,6 +46,8 @@ export default function LoginPage() {
             return router.push('/dashboard/caterer');
         } catch (error) {
             console.error('Login error:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -67,6 +71,7 @@ export default function LoginPage() {
                         <LoginCustomer
                             form={form}
                             onSubmit={onSubmit}
+                            isSubmitting={isSubmitting}
                         ></LoginCustomer>
                     </CardContent>
                 </Card>

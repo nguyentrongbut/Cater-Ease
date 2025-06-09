@@ -67,7 +67,7 @@ const CtaAction = () => {
                                     Hello {userInfo?.name} !
                                 </b>
                             </p>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem asChild>
                                 <LinkIcon
                                     href="/profile"
                                     icon={<User></User>}

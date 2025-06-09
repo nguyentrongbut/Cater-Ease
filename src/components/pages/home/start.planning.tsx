@@ -2,11 +2,12 @@ import SectionWrapper from "@/components/common/section.wrapper";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import Heading from "@/components/common/Heading";
+import ContainerWrapper from "@/components/common/container.wrapper";
 
 const StartPlanning = () => {
     return (
         <SectionWrapper className="py-16 bg-primary text-white">
-            <div className="container mx-auto px-4 text-center">
+            <ContainerWrapper className="text-center">
                 <Heading className="mb-4">Ready to Start Planning?</Heading>
                 <p className="text-xl mb-8 opacity-90">
                     Join thousands of satisfied customers who trust us with their events.
@@ -27,7 +28,7 @@ const StartPlanning = () => {
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </ContainerWrapper>
         </SectionWrapper>
     )
 }

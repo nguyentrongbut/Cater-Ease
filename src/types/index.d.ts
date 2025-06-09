@@ -24,6 +24,9 @@ export type TUserInfo = {
     phone: string;
     address: string;
     role: string;
+    password?: string;
+    status?: string;
+    avatar?: string;
 }
 
 export type TListEventMenu = {

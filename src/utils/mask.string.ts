@@ -1,4 +1,4 @@
-const maskString = (input: string, maskChar = '*') => {
+const maskString = (input = "", maskChar = '*') => {
     return maskChar.repeat(input.length);
 };
 

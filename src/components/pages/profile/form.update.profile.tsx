@@ -9,6 +9,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
 import {DialogClose} from "@/components/ui/dialog";
 import TabUploadImg from "@/components/pages/profile/tab.upload.img";
+import {TUserInfo} from "@/types";
 
 const formSchema = z.object({
     avatar: z
@@ -26,16 +27,16 @@ const formSchema = z.object({
 export type ProfileForm = z.infer<typeof formSchema>;
 
 
-const FormUpdateProfile = () => {
+const FormUpdateProfile = ({infoProfile}: { infoProfile: TUserInfo }) => {
     // 1. Define your form.
     const form = useForm<ProfileForm>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            avatar: '',
-            name: '',
-            email: '',
-            phone: '',
-            address: '',
+            avatar: infoProfile.avatar ?? '',
+            name: infoProfile.name ?? '',
+            email: infoProfile.email ?? '',
+            phone: infoProfile.phone ?? '',
+            address: infoProfile.address ?? '',
         },
     });
 

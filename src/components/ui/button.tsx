@@ -44,9 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({className, variant, size, asChild = false, isLoading, children, ...props}, ref) => {
         const Comp = asChild ? Slot : "button"
         const child = isLoading ?
-            <div className="rounded-full size-5
-            border-2 border-white border-t-transparent border-b-transparent
-            animate-spin "/> : children
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div> : children
         return (
             <Comp
                 className={cn(buttonVariants({variant, size, className}))}

@@ -43,6 +43,14 @@ export type TListEventMenu = {
     priceRange: number,
 }
 
+export type TEvent = {
+    id: string,
+    name: string,
+}
+
+export type TCuisine = TEvent
+
+
 export type TQuickStats = {
     number: string;
     title: string;

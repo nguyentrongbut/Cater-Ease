@@ -20,7 +20,8 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 const EventMenus = async ({searchParams}: {searchParams : SearchParams}) => {
 
     const { keyword } = await searchParams;
-    const listEventMenus = await getListEventMenus(keyword || "");
+    const normalizedKeyword = Array.isArray(keyword) ? keyword[0] : keyword || "";
+    const listEventMenus = await getListEventMenus(normalizedKeyword);
     const listEvent = await getListEvent()
     const listCuisines = await getListCuisine()
 

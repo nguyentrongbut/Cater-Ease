@@ -1,20 +1,33 @@
 'use client';
 
-import {Search, X} from "lucide-react";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import Link from "next/link";
-import {useState} from "react";
+import { Search, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SearchBar = () => {
-    const [searchQuery, setSearchQuery] = useState("")
+    const [searchQuery, setSearchQuery] = useState("");
+    const router = useRouter();
 
     // clear search input
     const clearSearch = () => {
         setSearchQuery("");
-    }
+    };
+
+    // handle search
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (searchQuery.trim() !== "") {
+            router.push(`/event-menus?keyword=${encodeURIComponent(searchQuery.trim())}`);
+        }
+    };
+
     return (
-        <div className="bg-white rounded-lg p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto relative">
+        <form
+            onSubmit={handleSearch}
+            className="bg-white rounded-lg p-2 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto relative"
+        >
             <div className="flex-1 flex items-center relative">
                 <Input
                     placeholder="Search event ..."
@@ -22,22 +35,18 @@ const SearchBar = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                {
-                    searchQuery && (
-                        <span className="mr-1 p-2 cursor-pointer" onClick={clearSearch}>
-                            <X className="h-4 w-4 text-gray-400"/>
-                        </span>
-                    )
-                }
+                {searchQuery && (
+                    <span className="mr-1 p-2 cursor-pointer" onClick={clearSearch}>
+                        <X className="h-4 w-4 text-gray-400" />
+                    </span>
+                )}
             </div>
-            <Link href="/event-menus">
-                <Button size="lg" className="w-full">
-                    <Search className="h-4 w-4 mr-2"/>
-                    Search Caterers
-                </Button>
-            </Link>
-        </div>
-    )
-}
+            <Button size="lg" type="submit">
+                <Search className="h-4 w-4 mr-2" />
+                Search Caterers
+            </Button>
+        </form>
+    );
+};
 
-export default SearchBar
+export default SearchBar;

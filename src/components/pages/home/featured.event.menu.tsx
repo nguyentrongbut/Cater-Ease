@@ -1,11 +1,12 @@
 import SectionWrapper from "@/components/common/section.wrapper";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import CardEventMenu from "@/components/pages/home/card.event.menu";
+import CardEventMenu from "@/components/common/card.event.menu";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import {getFeaturedEventMenus} from "@/lib/actions/event.menus";
 import {TListEventMenu} from "@/types";
 import Heading from "@/components/common/Heading";
+import ListCardEventMenu from "@/components/common/list.card.event.menu";
 
 const listEventMenus = await getFeaturedEventMenus();
 
@@ -20,14 +21,7 @@ const FeaturedEventMenu = () => {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {listEventMenus.map((eventMenu:TListEventMenu) => (
-                       <CardEventMenu
-                           key={eventMenu.id}
-                           eventMenu={eventMenu}
-                       ></CardEventMenu>
-                    ))}
-                </div>
+                <ListCardEventMenu listEventMenus={listEventMenus}></ListCardEventMenu>
             </ContainerWrapper>
         </SectionWrapper>
     )

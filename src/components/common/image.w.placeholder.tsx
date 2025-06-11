@@ -26,7 +26,7 @@ const ImageWithPlaceholder = ({
                 alt={alt}
                 width={width}
                 height={height}
-                onLoadingComplete={() => setLoaded(true)}
+                onLoad={() => setLoaded(true)}
                 className={`absolute top-0 left-0 transition-opacity duration-700 ${
                     loaded ? 'opacity-100' : 'opacity-0'
                 } ${className}`}

@@ -15,8 +15,12 @@ import SectionWrapper from "@/components/common/section.wrapper";
 import {getListEvent} from "@/lib/actions/category.events";
 import {getListCuisine} from "@/lib/actions/genre.cuisine";
 
-const EventMenus = async () => {
-    const listEventMenus = await getListEventMenus();
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+const EventMenus = async ({searchParams}: {searchParams : SearchParams}) => {
+
+    const { keyword } = await searchParams;
+    const listEventMenus = await getListEventMenus(keyword || "");
     const listEvent = await getListEvent()
     const listCuisines = await getListCuisine()
 

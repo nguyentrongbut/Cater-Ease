@@ -16,9 +16,9 @@ export async function getFeaturedEventMenus() {
     }
 }
 
-export async function getListEventMenus() {
+export async function getListEventMenus(keyword: string) {
     try {
-        const data:TListEventMenu[] = await cachedAxiosGet(`${url}`, ['event-menus']);
+        const data:TListEventMenu[] = await cachedAxiosGet(`${url}?name_like=${keyword}`, ['event-menus']);
         return data;
     } catch (error) {
         console.log(error);

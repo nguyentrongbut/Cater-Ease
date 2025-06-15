@@ -25,3 +25,13 @@ export async function getListEventMenus(keyword: string) {
         return null;
     }
 }
+
+export async function getEventMenu(slug: string) {
+    try {
+        const data:TListEventMenu[] = await cachedAxiosGet(`${url}?slug=${slug}`, ['event-menus']);
+        return data[0];
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

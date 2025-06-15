@@ -8,7 +8,7 @@ import {
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import Heading from "@/components/common/Heading";
+import Heading from "@/components/typography/Heading";
 import SearchFilterBar from "@/components/pages/event-menus/search.filter.bar";
 import ListCardEventMenu from "@/components/common/list.card.event.menu";
 import SectionWrapper from "@/components/common/section.wrapper";

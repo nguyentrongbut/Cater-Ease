@@ -1,7 +1,7 @@
 import SectionWrapper from "@/components/common/section.wrapper";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import Heading from "@/components/common/Heading";
+import Heading from "@/components/typography/Heading";
 import ContainerWrapper from "@/components/common/container.wrapper";
 
 const StartPlanning = () => {

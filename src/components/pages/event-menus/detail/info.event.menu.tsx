@@ -3,6 +3,7 @@ import {Button} from "@/components/ui/button";
 import {TListEventMenu} from "@/types";
 import {Badge} from "@/components/ui/badge";
 import HeartToggle from "@/components/common/heart.toggle";
+import AddToCart from "@/components/pages/event-menus/add.to.cart";
 
 const InfoEventMenu = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
     return (
@@ -50,11 +51,7 @@ const InfoEventMenu = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
                 ))}
             </div>
 
-            <div className="flex gap-3">
-                <Button className="flex-1">
-                    Add Menu To Card
-                </Button>
-            </div>
+            <AddToCart eventMenu={eventMenu}></AddToCart>
         </section>
 
     )

@@ -70,6 +70,6 @@ export type TReview = {
     foodId: string,
     name: string,
     rating: number,
-    createdAt: string,
+    createdAt: number,
     comment: string,
 }

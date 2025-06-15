@@ -1,7 +1,8 @@
 import {Card, CardContent} from "@/components/ui/card";
 import {Star} from "lucide-react";
+import dayjs from "@/utils/dayjs";
 
-const ReviewCard = ({name, createdAt, comment, rating} : {name: string, createdAt: string, comment: string, rating:number}) => {
+const ReviewCard = ({name, createdAt, comment, rating} : {name: string, createdAt: number, comment: string, rating:number}) => {
     return (
         <Card>
             <CardContent className="p-6">
@@ -21,7 +22,7 @@ const ReviewCard = ({name, createdAt, comment, rating} : {name: string, createdA
                             </div>
                         </div>
                     </div>
-                    <span className="text-sm text-gray-500 dark:text-gray-200">{createdAt}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-200">{dayjs(createdAt).fromNow()}</span>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300">{comment}</p>
             </CardContent>

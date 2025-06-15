@@ -6,10 +6,12 @@ import {getListReview} from "@/lib/actions/review";
 import ReviewCard from "@/components/pages/event-menus/detail/review.card.";
 import {TReview} from "@/types";
 
-const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews: number, id:string }) => {
+const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews: number, id: string }) => {
 
     const infoProfile = await getProfile()
     const listReview = await getListReview(id)
+
+    const hasReview = listReview?.some(review => review.name === infoProfile?.name)
 
     return (
         <section>
@@ -25,7 +27,7 @@ const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews:
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <Star
                                     key={star}
-                                    className={`h-4 w-4 ${  
+                                    className={`h-4 w-4 ${
                                         star
                                         <= Math.floor(rating)
                                             ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
@@ -59,10 +61,12 @@ const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews:
                     </div>
                 </div>
 
-                <PostReview infoProfile={infoProfile}></PostReview>
+                {!hasReview && (
+                    <PostReview id={id} infoProfile={infoProfile}></PostReview>
+                )}
 
                 <div className="space-y-6 mt-10 mb-20">
-                    {listReview.map((review : TReview) => (
+                    {listReview?.map((review: TReview) => (
                         <ReviewCard
                             key={review.id}
                             name={review?.name}

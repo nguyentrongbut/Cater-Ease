@@ -22,7 +22,7 @@ const ImageWithPlaceholder = ({
     return (
         <div className={cn("relative", className)}>
             <Image
-                src={src}
+                src={src || "/placeholder-img.png"}
                 alt={alt}
                 width={width}
                 height={height}

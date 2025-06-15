@@ -40,13 +40,13 @@ const HeartToggle = () => {
     };
 
     const handleLoginRedirect = () => {
+        router.push('/login');
+
         toast('Please log in to like items.', {
             icon: '🔒',
             duration: 2000,
             className: 'bg-white text-black border border-gray-200 text-sm',
         });
-
-        router.push('/login');
     };
 
     if (!infoProfile) {

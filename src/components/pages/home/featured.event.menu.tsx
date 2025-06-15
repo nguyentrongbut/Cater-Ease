@@ -1,11 +1,9 @@
 import SectionWrapper from "@/components/common/section.wrapper";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import CardEventMenu from "@/components/common/card.event.menu";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import {getFeaturedEventMenus} from "@/lib/actions/event.menus";
-import {TListEventMenu} from "@/types";
-import Heading from "@/components/common/Heading";
+import Heading from "@/components/typography/Heading";
 import ListCardEventMenu from "@/components/common/list.card.event.menu";
 
 const listEventMenus = await getFeaturedEventMenus();

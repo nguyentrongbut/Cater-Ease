@@ -11,12 +11,12 @@ const InfoEventMenu = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
                 <div className="flex justify-between items-start mb-4">
                     <div>
                         <h1 className="text-3xl font-medium mb-2 font-title line-clamp-1">{eventMenu?.name}</h1>
-                        <p className="text-gray-600 mb-2 line-clamp-1">{eventMenu?.cuisine} Cuisine</p>
+                        <p className="text-gray-600 dark:text-gray-300 mb-2 line-clamp-1">{eventMenu?.cuisine} Cuisine</p>
                         <div className="flex items-center gap-4 mb-4">
                             <div className="flex items-center gap-1">
                                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400"/>
                                 <span className="font-medium">{eventMenu?.rating}</span>
-                                <span className="text-gray-500">({eventMenu?.reviews} reviews)</span>
+                                <span className="text-gray-500 dark:text-gray-400">({eventMenu?.reviews} reviews)</span>
                             </div>
                         </div>
                     </div>
@@ -29,15 +29,15 @@ const InfoEventMenu = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
                 </div>
             </div>
 
-            <p className="text-gray-700 mb-6 line-clamp-3">{eventMenu?.description}</p>
+            <p className="text-gray-700 dark:text-gray-200 mb-6 line-clamp-3">{eventMenu?.description}</p>
 
             <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2 text-sm">
-                    <MapPin className="size-4 text-gray-500"/>
+                    <MapPin className="size-4 text-gray-500 dark:text-gray-300"/>
                     <span>{eventMenu?.location}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                    <CircleDollarSign className="size-4 text-gray-500" />
+                    <CircleDollarSign className="size-4 text-gray-500 dark:text-gray-300" />
                     <span>{eventMenu?.priceRange} / 1 people</span>
                 </div>
             </div>

@@ -21,9 +21,9 @@ const ReviewCard = ({name, createdAt, comment, rating} : {name: string, createdA
                             </div>
                         </div>
                     </div>
-                    <span className="text-sm text-gray-500">{createdAt}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-200">{createdAt}</span>
                 </div>
-                <p className="text-gray-700">{comment}</p>
+                <p className="text-gray-700 dark:text-gray-300">{comment}</p>
             </CardContent>
         </Card>
     )

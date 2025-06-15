@@ -11,7 +11,6 @@ const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews:
     const infoProfile = await getProfile()
     const listReview = await getListReview(id)
 
-    console.log(infoProfile)
     return (
         <section>
             <div>
@@ -34,7 +33,7 @@ const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews:
                                 />
                             ))}
                         </div>
-                        <div className="text-gray-600">{reviews} reviews</div>
+                        <div className="text-gray-600 dark:text-gray-200">{reviews} reviews</div>
                     </div>
 
                     <div className="md:col-span-3">
@@ -51,7 +50,7 @@ const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews:
                                             }}
                                         />
                                     </div>
-                                    <span className="text-sm text-gray-600 w-8">
+                                    <span className="text-sm text-gray-600 w-8 dark:text-gray-300">
                           {rating === 5 ? 87 : rating === 4 ? 25 : rating === 3 ? 6 : rating === 2 ? 4 : 2}
                         </span>
                                 </div>

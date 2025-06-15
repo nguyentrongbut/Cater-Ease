@@ -23,7 +23,7 @@ const ImageGallery = ({listImage, name}: { listImage: string[], name: string }) 
                             key={index}
                             onClick={() => setSelectedImage(index)}
                             className={`size-20 rounded-lg overflow-hidden border-2 flex-shrink-0 cursor-pointer ${
-                                selectedImage === index ? "border-primary" : "border-gray-200"
+                                selectedImage === index ? "border-primary" : "border-gray-200 dark:border-darkGray"
                             }`}
                         >
                             <ImageWithPlaceholder

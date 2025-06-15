@@ -1,5 +1,5 @@
 import SectionWrapper from "@/components/common/section.wrapper";
-import Heading from "@/components/common/Heading";
+import Heading from "@/components/typography/Heading";
 import HowItWorksItem from "@/components/pages/home/how.it.works.item";
 import { howItWorkItems } from "@/constants";
 import { THowItWorkItem } from "@/types";

@@ -32,6 +32,7 @@ export type TUserInfo = {
 export type TListEventMenu = {
     id: string,
     name: string,
+    description: string,
     slug: string,
     cuisine: string,
     rating: number,
@@ -39,6 +40,7 @@ export type TListEventMenu = {
     location: string,
     minOrder: number,
     image: string,
+    images: string[],
     specialties: string[],
     priceRange: number,
 }
@@ -61,4 +63,13 @@ export type THowItWorkItem = {
     icon: React.ReactElement;
     title: string;
     desc: string;
+}
+
+export type TReview = {
+    id: string,
+    foodId: string,
+    name: string,
+    rating: number,
+    createdAt: string,
+    comment: string,
 }

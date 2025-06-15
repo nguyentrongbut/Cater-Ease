@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {TUserInfo} from "@/types";
 import {useRouter} from "next/navigation";
+import {postReview} from "@/lib/actions/review";
 
 const formSchema = z.object({
     rating: z.number().min(1, "Please give a rating"),
@@ -19,7 +20,13 @@ const formSchema = z.object({
 
 export type ReviewForm = z.infer<typeof formSchema>;
 
-const PostReview = ({infoProfile} : {infoProfile :TUserInfo | null}) => {
+export type PostReviewForm = ReviewForm & {
+    foodId: string,
+    name: string,
+    createdAt: number,
+}
+
+const PostReview = ({infoProfile, id} : {infoProfile :TUserInfo | null, id : string}) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
@@ -45,10 +52,18 @@ const PostReview = ({infoProfile} : {infoProfile :TUserInfo | null}) => {
                     className: 'bg-white text-black border border-gray-200 text-sm',
                 });
             }
+            const formData = {
+                ...values,
+                foodId: id,
+                name: infoProfile?.name,
+                createdAt: Date.now(),
+            };
 
-            console.log(values)
-
-            toast.success('Send Review successfully!');
+            const result = await postReview(formData);
+            if (!result) return toast.error('Send Review failed!');
+            if (result === 201) {
+                toast.success('Send Review successful!');
+            }
 
         } catch (error) {
             console.error('Send Review error:', error);

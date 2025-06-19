@@ -36,6 +36,7 @@ import {Button} from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
 import useInfoProfileClient from "@/hooks/useInfoProfileClient";
 import {TCartItem} from "@/types";
+import {postOrder} from "@/lib/actions/order";
 
 const formSchema = z.object({
     locationType: z.enum(['restaurant', 'home']),
@@ -74,7 +75,7 @@ const formSchema = z.object({
 
 type BookingForm = z.infer<typeof formSchema>;
 
-type BookingPayload = Omit<BookingForm, 'eventDate'> & {
+export type BookingPayload = Omit<BookingForm, 'eventDate'> & {
     eventDate: string;
     userName?: string;
     addressRestaurant?: string;
@@ -144,9 +145,12 @@ const FormBooking = (
                 payload.userName = name;
             }
 
-            console.log('Payload to send:', payload);
-            // clearCart()
-            toast.success('Booking submitted successfully.');
+            const result = await postOrder(payload);
+            if (!result) return toast.error('Send order failed!');
+            if (result === 201) {
+                toast.success('Send order successful! Please wait for order confirmation.');
+                clearCart()
+            }
         } catch (error) {
             console.error('Error when submitting booking:', error);
             toast.error('Booking failed. Please try again.');

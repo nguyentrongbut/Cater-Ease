@@ -11,7 +11,7 @@ const EmptyCart = () => {
                     <ShoppingCart className="size-20 md:size-24 text-gray-300 mx-auto mb-6"/>
                     <Heading as="h1" className="mb-4">Your Cart is Empty</Heading>
                     <p className="text-gray-600 dark:text-gray-400 mb-8">
-                        Looks like you haven't added any items to your cart yet. Start exploring our amazing caterers!
+                        Looks like you haven`&#39`t  added any items to your cart yet. Start exploring our amazing caterers!
                     </p>
                     <Link href="/event-menus">
                         <Button size="lg">Browse Caterers</Button>

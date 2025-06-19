@@ -2,6 +2,7 @@
 
 import {useCallback, useEffect, useState} from "react";
 import {getProfile} from "@/lib/actions/account";
+import {TUserInfo} from "@/types";
 
 const useInfoProfileClient = () => {
     const [infoProfile, setInfoProfile] = useState<TUserInfo | null>(null);

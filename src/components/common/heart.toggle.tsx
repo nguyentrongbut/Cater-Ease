@@ -1,30 +1,16 @@
 'use client';
 
 import {Heart} from "lucide-react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import HeartIcon from "@/components/icons/heart.icon";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
-import {getProfile} from "@/lib/actions/account";
-import {TUserInfo} from "@/types";
+import useInfoProfileClient from "@/hooks/useInfoProfileClient";
 
 const HeartToggle = () => {
     const [isLiked, setIsLiked] = useState(false);
     const router = useRouter();
-    const [infoProfile, setInfoProfile] = useState<TUserInfo | null>(null);
-
-    useEffect(() => {
-        const getInfoProfile = async () => {
-            try {
-                const profile = await getProfile();
-                setInfoProfile(profile);
-            } catch (err) {
-                console.error("Failed to fetch profile:", err);
-            }
-        };
-
-        getInfoProfile();
-    }, []);
+    const { infoProfile } = useInfoProfileClient();
 
     const handleLikeToggle = () => {
         setIsLiked(!isLiked);

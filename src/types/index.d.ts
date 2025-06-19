@@ -73,3 +73,11 @@ export type TReview = {
     createdAt: number,
     comment: string,
 }
+
+export type TCartItem = {
+    id: string,
+    name: string,
+    price: number,
+    quantity: number,
+    image: string,
+}

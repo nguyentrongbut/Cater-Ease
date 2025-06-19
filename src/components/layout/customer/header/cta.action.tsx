@@ -1,5 +1,5 @@
 import {ButtonBadge} from "@/components/button";
-import {Heart, LogOut, MessageCircle, ShoppingCart, User} from "lucide-react";
+import {Heart, LogOut, MessageCircle, User} from "lucide-react";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import {Button} from "@/components/ui/button";
 import {logoutServer} from "@/lib/actions/auth";
 import {getProfile} from "@/lib/actions/account";
 import {redirect} from "next/navigation";
+import BtnCart from "@/components/layout/customer/header/btn.cart";
 
 const CtaAction = async () => {
     const infoProfile = await getProfile();
@@ -32,12 +33,7 @@ const CtaAction = async () => {
                         }
                     ></ButtonBadge>
 
-                    <ButtonBadge
-                        href="/cart"
-                        icon={
-                            <ShoppingCart className="h-5 w-5"/>
-                        }
-                    ></ButtonBadge>
+                    <BtnCart/>
 
                     <ButtonBadge
                         href="/messages"
@@ -91,12 +87,7 @@ const CtaAction = async () => {
                 </>
             ) : (
                 <>
-                    <ButtonBadge
-                        href="/cart"
-                        icon={
-                            <ShoppingCart className="h-5 w-5"/>
-                        }
-                    ></ButtonBadge>
+                    <BtnCart/>
                     <Link href="/login" scroll={false}>
                         <Button variant="ghost">Login</Button>
                     </Link>

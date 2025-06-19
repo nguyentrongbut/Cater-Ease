@@ -4,6 +4,7 @@ import {montserrat, openSans} from "@/utils";
 import "./globals.css";
 import {ThemeProvider} from "@/components/theme/theme-provider";
 import {Toaster} from "react-hot-toast";
+import CartProvider from "@/contexts/cart.context";
 
 
 export const metadata: Metadata = {
@@ -27,7 +28,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
+            <CartProvider>
             {children}
+            </CartProvider>
             <Toaster
                 position="top-center"
                 toastOptions={{

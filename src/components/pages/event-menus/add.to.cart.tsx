@@ -3,18 +3,21 @@
 import {Button} from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
 import {TListEventMenu} from "@/types";
+import toast from "react-hot-toast";
 
 const AddToCart = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
-    const { addItem } = useCart()
-    if (!eventMenu) return
-    const {id, name, priceRange} = eventMenu
+    const {addItem} = useCart()
+    if (!eventMenu) return null;
+    const {id, name, priceRange, image} = eventMenu
 
     const handleAddToCart = () => {
         addItem({
             id,
             name,
-            price: priceRange
+            image,
+            price: priceRange,
         })
+        toast.success("Added to cart")
     }
 
     return (

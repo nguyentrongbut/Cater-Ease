@@ -1,17 +1,11 @@
 'use client'
 
 import React, {createContext, useEffect, useState} from "react";
-
-export type CartItem = {
-    id: string,
-    name: string,
-    price: number,
-    quantity: number
-}
+import { TCartItem } from "@/types";
 
 type TCartContextType = {
-    items: CartItem[],
-    addItem: (item: Omit<CartItem, 'quantity'>) => void,
+    items: TCartItem[],
+    addItem: (item: Omit<TCartItem, 'quantity'>) => void,
     removeItem: (id: string) => void,
     updateQuantity: (id: string, quantity: number) => void,
     clearCart: () => void,
@@ -22,7 +16,7 @@ type TCartContextType = {
 export const CartContext = createContext<TCartContextType | undefined>(undefined)
 
 const CartProvider = ({children} : {children: React.ReactNode}) => {
-    const [items, setItems] = useState<CartItem[]>([])
+    const [items, setItems] = useState<TCartItem[]>([])
 
     useEffect(() => {
         const savedCart = localStorage.getItem("cart")
@@ -35,7 +29,7 @@ const CartProvider = ({children} : {children: React.ReactNode}) => {
         localStorage.setItem("cart", JSON.stringify(items))
     }, [items])
 
-    const addItem = (newItem: Omit<CartItem, 'quantity'>) => {
+    const addItem = (newItem: Omit<TCartItem, 'quantity'>) => {
         setItems((prevItems) => {
             const existItem = prevItems.find((item) => item.id === newItem.id)
             return existItem

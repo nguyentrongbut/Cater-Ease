@@ -1,10 +1,18 @@
-import React from "react";
-import {cn} from "@/lib/utils";
+import React, {JSX} from "react";
+import { cn } from "@/lib/utils";
 
-const Heading = ({children, className}: { children: React.ReactNode, className?: string }) => {
+type HeadingProps = {
+    as?: keyof JSX.IntrinsicElements;
+    children: React.ReactNode;
+    className?: string;
+};
+
+const Heading = ({ as: Tag = "h2", children, className }: HeadingProps) => {
     return (
-        <h2 className={cn("text-3xl font-semibold font-title", className)}>{children}</h2>
-    )
-}
+        <Tag className={cn("text-3xl font-semibold font-title", className)}>
+            {children}
+        </Tag>
+    );
+};
 
 export default Heading;

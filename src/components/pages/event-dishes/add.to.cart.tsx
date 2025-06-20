@@ -1,11 +1,11 @@
 'use client'
 
-import {Button} from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
 import {TListEventMenu} from "@/types";
 import toast from "react-hot-toast";
+import React from "react";
 
-const AddToCart = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
+const AddToCart = ({eventMenu, children}: { eventMenu: TListEventMenu | null, children:React.ReactNode }) => {
     const {addItem} = useCart()
     if (!eventMenu) return null;
     const {id, name, priceRange, image} = eventMenu
@@ -21,9 +21,9 @@ const AddToCart = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
     }
 
     return (
-        <Button onClick={handleAddToCart}>
-            Add Food To Cart
-        </Button>
+        <div onClick={handleAddToCart}>
+            {children}
+        </div>
     )
 }
 

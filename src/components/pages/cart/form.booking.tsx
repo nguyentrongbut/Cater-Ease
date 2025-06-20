@@ -37,6 +37,8 @@ import useCart from "@/hooks/useCart";
 import useInfoProfileClient from "@/hooks/useInfoProfileClient";
 import {TCartItem} from "@/types";
 import {postOrder} from "@/lib/actions/order";
+import {useRouter} from "next/navigation";
+import {getAnonymousUserId} from "@/utils/anonymous.user.id";
 
 const formSchema = z.object({
     locationType: z.enum(['restaurant', 'home']),
@@ -90,11 +92,14 @@ export type BookingPayload = Omit<BookingForm, 'eventDate'> & {
 const FormBooking = (
     {tableNumber, setTableNumber, totalPrice, items}
     : {tableNumber:number, setTableNumber: (value: number) => void, totalPrice: number, items: TCartItem[]}) => {
+
+    const router = useRouter();
+
     const {clearCart} = useCart()
 
     const {infoProfile} = useInfoProfileClient();
 
-    let name = '';
+    let name = getAnonymousUserId();
 
     if (infoProfile) {
         name = infoProfile.name;
@@ -145,9 +150,11 @@ const FormBooking = (
                 payload.userName = name;
             }
 
-            const result = await postOrder(payload);
-            if (!result) return toast.error('Send order failed!');
-            if (result === 201) {
+            const orderId = await postOrder(payload);
+
+            if (!orderId) return toast.error('Send order failed!');
+            if (orderId) {
+                router.push(`/orders/${orderId}`);
                 toast.success('Send order successful! Please wait for order confirmation.');
                 clearCart()
             }
@@ -290,7 +297,7 @@ const FormBooking = (
                 {/* Cart Actions */}
                 <div className="flex justify-between">
                     <div className="flex gap-4">
-                        <Link href="/event-menus" className="flex-1">
+                        <Link href="/event-dishes" className="flex-1">
                             <Button type="button" variant="outline" className="w-full">
                                 <ArrowLeft />
                                 Go back to shopping

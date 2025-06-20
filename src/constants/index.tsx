@@ -100,12 +100,12 @@ export const howItWorkItems: THowItWorkItem[] = [
     {
         icon: <Search className="text-primary size-8"/>,
         title: "Search & Browse",
-        desc: "Find caterers by cuisine, location, or event type. Browse menus and read reviews."
+        desc: "Find dishes by event type. Browse menus and read reviews."
     },
     {
         icon: <Calendar className="text-primary size-8"/>,
         title: "Book & Customize",
-        desc: "Select your menu, choose date and time, and customize your order details."
+        desc: "Select your dishes, choose date and time, and customize your order details."
     },
     {
         icon: <ChefHat className="text-primary size-8"/>,

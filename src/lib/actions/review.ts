@@ -4,7 +4,7 @@ import axios from "axios";
 import cachedAxiosGet from "@/utils/cached.axios.get";
 import {TReview} from "@/types";
 import {revalidateTag} from "next/cache";
-import {PostReviewForm} from "@/components/pages/event-menus/detail/post.review";
+import {PostReviewForm} from "@/components/pages/event-dishes/detail/post.review";
 
 
 const url = `${process.env.API_URL}/reviews`;

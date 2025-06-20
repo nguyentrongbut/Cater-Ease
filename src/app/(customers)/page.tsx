@@ -1,7 +1,7 @@
 import SearchBar from "@/components/pages/home/search.bar";
 import QuickStats from "@/components/pages/home/quick.stats";
 import SectionWrapper from "@/components/common/section.wrapper";
-import FeaturedEventMenu from "@/components/pages/home/featured.event.menu";
+import FeaturedEventDishes from "@/components/pages/home/featured.event.dishes";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import HowItWorks from "@/components/pages/home/how.it.works";
 import StartPlanning from "@/components/pages/home/start.planning";
@@ -15,7 +15,7 @@ export default function Home() {
                     <div className="max-w-3xl mx-auto text-center">
                         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-secondary font-title dark:text-white">Premium Catering for Every Occasion</h1>
                         <p className="text-xl mb-8 opacity-90 font-title">
-                            Discover exceptional caterers, browse menus, and book your perfect event catering with ease.
+                            Enjoy expertly crafted menus and seamless booking — brought to you by our trusted catering partner.
                         </p>
                         <SearchBar></SearchBar>
                     </div>
@@ -25,7 +25,7 @@ export default function Home() {
 
             <QuickStats></QuickStats>
 
-            <FeaturedEventMenu></FeaturedEventMenu>
+            <FeaturedEventDishes></FeaturedEventDishes>
 
             <HowItWorks></HowItWorks>
 

@@ -1,5 +1,5 @@
-import FilterEventMenu from "@/components/pages/event-menus/filter.event.menu";
-import SearchEventMenu from "@/components/pages/event-menus/search.event.menu";
+import FilterEventDishes from "@/components/pages/event-dishes/filter.event.dishes";
+import SearchEventDishes from "@/components/pages/event-dishes/search.event.dishes";
 import {TCuisine, TEvent} from "@/types";
 
 const SearchFilterBar = ({listEvent, listCuisines}: {
@@ -9,9 +9,9 @@ const SearchFilterBar = ({listEvent, listCuisines}: {
     return (
         <div className="flex flex-col lg:flex-row gap-4">
 
-            <SearchEventMenu></SearchEventMenu>
+            <SearchEventDishes></SearchEventDishes>
             <div className="flex gap-2">
-                <FilterEventMenu listEvent={listEvent} listCuisines={listCuisines}></FilterEventMenu>
+                <FilterEventDishes listEvent={listEvent} listCuisines={listCuisines}></FilterEventDishes>
             </div>
         </div>
     )

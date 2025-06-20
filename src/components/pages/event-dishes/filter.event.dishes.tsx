@@ -7,7 +7,7 @@ import {Slider} from "@/components/ui/slider";
 import {TCuisine, TEvent} from "@/types";
 import {Label} from "@/components/ui/label";
 
-const FilterEventMenu = ({listEvent, listCuisines}: {
+const FilterEventDishes = ({listEvent, listCuisines}: {
     listEvent: TEvent[] | null,
     listCuisines: TCuisine[] | null
 }) => {
@@ -83,4 +83,4 @@ const FilterEventMenu = ({listEvent, listCuisines}: {
     );
 };
 
-export default FilterEventMenu;
+export default FilterEventDishes;

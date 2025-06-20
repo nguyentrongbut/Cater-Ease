@@ -8,9 +8,9 @@ import {
 import Link from "next/link";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import {getEventMenu} from "@/lib/actions/event.menus";
-import ImageGallery from "@/components/pages/event-menus/detail/image.gallery";
-import InfoEventMenu from "@/components/pages/event-menus/detail/info.event.menu";
-import CustomerReviews from "@/components/pages/event-menus/detail/customer.reviews";
+import ImageGallery from "@/components/pages/event-dishes/detail/image.gallery";
+import InfoEventDishes from "@/components/pages/event-dishes/detail/info.event.dishes";
+import CustomerReviews from "@/components/pages/event-dishes/detail/customer.reviews";
 
 type Params = Promise<{ slug: string }>
 
@@ -40,7 +40,7 @@ const EventMenuDetail = async ({params}: { params: Params }) => {
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            <Link href="/event-menus">Event Menus</Link>
+                            <Link href="/event-dishes">Event Dishes</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator>
@@ -57,7 +57,7 @@ const EventMenuDetail = async ({params}: { params: Params }) => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <ImageGallery listImage={listImage} name={name}></ImageGallery>
-                <InfoEventMenu eventMenu={eventMenu}></InfoEventMenu>
+                <InfoEventDishes eventMenu={eventMenu}></InfoEventDishes>
             </div>
 
             <CustomerReviews id={id} rating={rating} reviews={reviews}></CustomerReviews>

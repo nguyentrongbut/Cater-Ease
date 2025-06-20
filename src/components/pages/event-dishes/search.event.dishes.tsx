@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import React, { useEffect, useState } from "react";
 
-const SearchEventMenu = () => {
+const SearchEventDishes = () => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -64,4 +64,4 @@ const SearchEventMenu = () => {
     );
 };
 
-export default SearchEventMenu;
+export default SearchEventDishes;

@@ -1,9 +1,9 @@
 import Heading from "@/components/typography/Heading";
 import {Star} from "lucide-react";
-import PostReview from "@/components/pages/event-menus/detail/post.review";
+import PostReview from "@/components/pages/event-dishes/detail/post.review";
 import {getProfile} from "@/lib/actions/account";
 import {getListReview} from "@/lib/actions/review";
-import ReviewCard from "@/components/pages/event-menus/detail/review.card.";
+import ReviewCard from "@/components/pages/event-dishes/detail/review.card.";
 import {TReview} from "@/types";
 
 const CustomerReviews = async ({rating, reviews, id}: { rating: number, reviews: number, id: string }) => {

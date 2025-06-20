@@ -4,25 +4,25 @@ import {Button} from "@/components/ui/button";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import {getFeaturedEventMenus} from "@/lib/actions/event.menus";
 import Heading from "@/components/typography/Heading";
-import ListCardEventMenu from "@/components/common/list.card.event.menu";
+import ListCardEventDishes from "@/components/common/list.card.event.dishes";
 
 const listEventMenus = await getFeaturedEventMenus();
 
-const FeaturedEventMenu = () => {
+const FeaturedEventDishes = () => {
     return (
         <SectionWrapper className="py-16">
             <ContainerWrapper>
                 <div className="flex justify-between items-center mb-8">
-                    <Heading>Featured Event Menu</Heading>
-                    <Link href="/event-menus">
+                    <Heading>Featured Event Dishes</Heading>
+                    <Link href="/event-dishes">
                         <Button variant="ghost">View All</Button>
                     </Link>
                 </div>
 
-                <ListCardEventMenu listEventMenus={listEventMenus}></ListCardEventMenu>
+                <ListCardEventDishes listEventMenus={listEventMenus}></ListCardEventDishes>
             </ContainerWrapper>
         </SectionWrapper>
     )
 }
 
-export default FeaturedEventMenu;
+export default FeaturedEventDishes;

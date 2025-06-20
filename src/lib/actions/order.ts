@@ -2,16 +2,30 @@
 
 import axios from "axios";
 import {BookingPayload} from "@/components/pages/cart/form.booking";
+// import cachedAxiosGet from "@/utils/cached.axios.get";
 
 const url = `${process.env.API_URL}/orders`;
+
+export async function getListOrderUser(userName: string) {
+    try {
+        const data = await axios.get(`${url}?userName=${userName}`);
+
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
 
 export async function postOrder(dataOrder: BookingPayload ) {
     try {
         const response = await axios.post(`${url}`, dataOrder);
 
-        if (response.data.length < 1) return null;
+        if (!response.data || !response.data.id) {
+            return null;
+        }
 
-        return 201
+        return response.data.id;
     } catch (error) {
         console.log(error)
         return null;

@@ -1,5 +1,5 @@
 import {ButtonBadge} from "@/components/button";
-import {Heart, LogOut, MessageCircle, User} from "lucide-react";
+import {FileText, Heart, LogOut, MessageCircle, User} from "lucide-react";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import Image from "next/image";
@@ -34,6 +34,13 @@ const CtaAction = async () => {
                     ></ButtonBadge>
 
                     <BtnCart/>
+
+                    <ButtonBadge
+                        href="/orders"
+                        icon={
+                            <FileText className="size-4" />
+                        }
+                    ></ButtonBadge>
 
                     <ButtonBadge
                         href="/messages"
@@ -88,6 +95,14 @@ const CtaAction = async () => {
             ) : (
                 <>
                     <BtnCart/>
+
+                    <ButtonBadge
+                        href="/orders"
+                        icon={
+                            <FileText className="size-4" />
+                        }
+                    ></ButtonBadge>
+
                     <Link href="/login" scroll={false}>
                         <Button variant="ghost">Login</Button>
                     </Link>

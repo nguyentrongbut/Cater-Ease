@@ -9,8 +9,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import Heading from "@/components/typography/Heading";
-import SearchFilterBar from "@/components/pages/event-menus/search.filter.bar";
-import ListCardEventMenu from "@/components/common/list.card.event.menu";
+import SearchFilterBar from "@/components/pages/event-dishes/search.filter.bar";
+import ListCardEventDishes from "@/components/common/list.card.event.dishes";
 import SectionWrapper from "@/components/common/section.wrapper";
 import {getListEvent} from "@/lib/actions/category.events";
 import {getListCuisine} from "@/lib/actions/genre.cuisine";
@@ -39,20 +39,20 @@ const EventMenus = async ({searchParams}: {searchParams : SearchParams}) => {
                             <span>/</span>
                         </BreadcrumbSeparator>
                         <BreadcrumbItem>
-                            <BreadcrumbPage>Event Menus</BreadcrumbPage>
+                            <BreadcrumbPage>Event Dishes</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
 
                 <div className="mb-8">
-                    <Heading>Find Your Perfect Event Menu</Heading>
-                    <p className="text-gray-600 text-sm mt-2">Discover amazing caterers in your area</p>
+                    <Heading>Find Your Perfect Event Dishes</Heading>
+                    <p className="text-gray-600 text-sm mt-2">Discover amazing dishes</p>
                 </div>
 
                 <SearchFilterBar listEvent={listEvent} listCuisines={listCuisines}></SearchFilterBar>
 
                 <SectionWrapper>
-                    <ListCardEventMenu listEventMenus={listEventMenus}></ListCardEventMenu>
+                    <ListCardEventDishes listEventMenus={listEventMenus}></ListCardEventDishes>
                 </SectionWrapper>
             </ContainerWrapper>
         </>

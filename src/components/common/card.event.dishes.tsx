@@ -1,15 +1,16 @@
 import {Button} from "@/components/ui/button";
-import { MapPin, Star, Users} from "lucide-react";
+import {MapPin, ShoppingCart, Star, Users} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
 import {TListEventMenu} from "@/types";
 import HeartToggle from "@/components/common/heart.toggle";
 import ImageWPlaceholder from "@/components/common/image.w.placeholder";
+import AddToCart from "@/components/pages/event-dishes/add.to.cart";
 
-const CardEventMenu = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
+const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
     return (
-        <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+        <Card className="overflow-hidden hover:shadow-lg transition-shadow group relative">
             <div className="relative">
                 <ImageWPlaceholder
                     width={400}
@@ -18,8 +19,13 @@ const CardEventMenu = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                     alt={eventMenu.name || 'placeholder image cater ease'}
                     className="w-full h-48 object-cover"
                 />
-                <div className="absolute top-2 right-2 cursor-pointer">
+                <div className="absolute top-2 right-2 cursor-pointer flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     <HeartToggle></HeartToggle>
+                    <AddToCart eventMenu={eventMenu}>
+                        <div className="p-3 bg-background/90 rounded-lg cursor-pointer">
+                            <ShoppingCart className="size-4"/>
+                        </div>
+                    </AddToCart>
                 </div>
             </div>
 
@@ -58,7 +64,7 @@ const CardEventMenu = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                 </div>
 
                 <div className="flex gap-2">
-                    <Link href={`/event-menus/${eventMenu.slug}`} className="flex-1">
+                    <Link href={`/event-dishes/${eventMenu.slug}`} className="flex-1">
                         <Button className="w-full">View Menu</Button>
                     </Link>
                 </div>
@@ -67,4 +73,4 @@ const CardEventMenu = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
     )
 }
 
-export default CardEventMenu;
+export default CardEventDishes;

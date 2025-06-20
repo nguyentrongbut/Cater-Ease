@@ -13,7 +13,7 @@ const EmptyCart = () => {
                     <p className="text-gray-600 dark:text-gray-400 mb-8">
                         Looks like you haven&apos;t   added any items to your cart yet. Start exploring our amazing caterers!
                     </p>
-                    <Link href="/event-menus">
+                    <Link href="/event-dishes">
                         <Button size="lg">Browse Caterers</Button>
                     </Link>
                 </div>

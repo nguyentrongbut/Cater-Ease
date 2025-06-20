@@ -3,9 +3,9 @@ import {Button} from "@/components/ui/button";
 import {TListEventMenu} from "@/types";
 import {Badge} from "@/components/ui/badge";
 import HeartToggle from "@/components/common/heart.toggle";
-import AddToCart from "@/components/pages/event-menus/add.to.cart";
+import AddToCart from "@/components/pages/event-dishes/add.to.cart";
 
-const InfoEventMenu = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
+const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
     return (
         <section className="h-full flex flex-col justify-between">
             <div className="flex justify-between">
@@ -51,10 +51,14 @@ const InfoEventMenu = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
                 ))}
             </div>
 
-            <AddToCart eventMenu={eventMenu}></AddToCart>
+            <AddToCart eventMenu={eventMenu}>
+                <Button className="w-full">
+                    Add Food To Cart
+                </Button>
+            </AddToCart>
         </section>
 
     )
 }
 
-export default InfoEventMenu
+export default InfoEventDishes

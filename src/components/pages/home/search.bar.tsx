@@ -19,7 +19,7 @@ const SearchBar = () => {
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (searchQuery.trim() !== "") {
-            router.push(`/event-menus?keyword=${encodeURIComponent(searchQuery.trim())}`);
+            router.push(`/event-dishes?keyword=${encodeURIComponent(searchQuery.trim())}`);
         }
     };
 
@@ -30,7 +30,7 @@ const SearchBar = () => {
         >
             <div className="flex-1 flex items-center relative">
                 <Input
-                    placeholder="Search event ..."
+                    placeholder="Search dishes ..."
                     className="border-0 focus-visible:ring-0 text-gray-900 dark:bg-white"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -43,7 +43,7 @@ const SearchBar = () => {
             </div>
             <Button size="lg" type="submit">
                 <Search className="h-4 w-4 mr-2" />
-                Search Caterers
+                Search Dishes
             </Button>
         </form>
     );

@@ -1,5 +1,5 @@
 import {Button} from "@/components/ui/button";
-import {MapPin, ShoppingCart, Star, Users} from "lucide-react";
+import {MapPin, ShoppingCart, Star} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
@@ -49,10 +49,6 @@ const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                         <span className="font-medium">{eventMenu.rating}</span>
                         <span className="text-gray-500 text-sm dark:text-gray-200">({eventMenu.reviews})</span>
                     </div>
-                    <div className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
-                        <Users className="size-4" />
-                        <span className="text-sm">Min {eventMenu.minOrder}</span>
-                    </div>
                 </div>
 
                 <div className="flex gap-2 mb-4">
@@ -65,7 +61,7 @@ const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
 
                 <div className="flex gap-2">
                     <Link href={`/event-dishes/${eventMenu.slug}`} className="flex-1">
-                        <Button className="w-full">View Menu</Button>
+                        <Button className="w-full">View Dishes</Button>
                     </Link>
                 </div>
             </CardContent>

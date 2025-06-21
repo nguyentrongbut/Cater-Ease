@@ -45,7 +45,7 @@ const EventMenus = async ({searchParams}: {searchParams : SearchParams}) => {
                 </Breadcrumb>
 
                 <div className="mb-8">
-                    <Heading>Find Your Perfect Event Dishes</Heading>
+                    <Heading as="h1">Find Your Perfect Event Dishes</Heading>
                     <p className="text-gray-600 text-sm mt-2">Discover amazing dishes</p>
                 </div>
 

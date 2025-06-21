@@ -1,14 +1,21 @@
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Separator} from "@/components/ui/separator";
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
 
-const OrderSummaryCart = ({totalPrice, numTable} : {totalPrice: number, numTable: number}) => {
+const OrderSummaryCart = ({totalPrice, numTable, detail, userId}: {
+    totalPrice: number,
+    numTable: number,
+    detail?: boolean,
+    userId?: string
+}) => {
     return (
         <div>
-            <Card className="sticky top-4">
+            <Card className={`${!detail && "sticky top-4"}`}>
                 <CardHeader>
                     <CardTitle>Order Summary</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className={`space-y-4 ${detail && 'mt-6'}`}>
                     <div className="space-y-2.5">
                         <div className="flex justify-between">
                             <span>Subtotal</span>
@@ -28,6 +35,13 @@ const OrderSummaryCart = ({totalPrice, numTable} : {totalPrice: number, numTable
                     <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
                         By proceeding, you agree to our Terms of Service and Privacy Policy
                     </p>
+                    {detail && (
+                        <Link href={`/checkout/${userId}`} className="block">
+                            <Button className="w-full">
+                                Checkout
+                            </Button>
+                        </Link>
+                    )}
                 </CardContent>
             </Card>
         </div>

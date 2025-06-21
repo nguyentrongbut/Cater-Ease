@@ -6,11 +6,22 @@ import {BookingPayload} from "@/components/pages/cart/form.booking";
 
 const url = `${process.env.API_URL}/orders`;
 
-export async function getListOrderUser(userName: string) {
+export async function getListOrderUser(userId: string) {
     try {
-        const data = await axios.get(`${url}?userName=${userName}`);
+        const response = await axios.get(`${url}?userId=${userId}`);
 
-        console.log(data)
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export async function getOrderDetail(id: string) {
+    try {
+        const response = await axios.get(`${url}/${id}`);
+
+        return response.data;
     } catch (error) {
         console.log(error);
         return null;

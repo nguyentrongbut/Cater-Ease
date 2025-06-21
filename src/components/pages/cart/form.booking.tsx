@@ -38,7 +38,7 @@ import useInfoProfileClient from "@/hooks/useInfoProfileClient";
 import {TCartItem} from "@/types";
 import {postOrder} from "@/lib/actions/order";
 import {useRouter} from "next/navigation";
-import {getAnonymousUserId} from "@/utils/anonymous.user.id";
+import {createAnonymousUserId, getAnonymousUserId} from "@/utils/anonymous.user.id";
 
 const formSchema = z.object({
     locationType: z.enum(['restaurant', 'home']),
@@ -79,7 +79,7 @@ type BookingForm = z.infer<typeof formSchema>;
 
 export type BookingPayload = Omit<BookingForm, 'eventDate'> & {
     eventDate: string;
-    userName?: string;
+    userId?: string;
     addressRestaurant?: string;
     addressHome?: string;
     total: number;
@@ -99,11 +99,7 @@ const FormBooking = (
 
     const {infoProfile} = useInfoProfileClient();
 
-    let name = getAnonymousUserId();
-
-    if (infoProfile) {
-        name = infoProfile.name;
-    }
+    const userId = infoProfile?.id || getAnonymousUserId() || createAnonymousUserId();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -146,16 +142,16 @@ const FormBooking = (
                 payload.addressHome = values.addressHome;
             }
 
-            if (name) {
-                payload.userName = name;
+            if (userId) {
+                payload.userId = userId;
             }
 
             const orderId = await postOrder(payload);
 
-            if (!orderId) return toast.error('Send order failed!');
+            if (!orderId) return toast.error('Send orders failed!');
             if (orderId) {
                 router.push(`/orders/${orderId}`);
-                toast.success('Send order successful! Please wait for order confirmation.');
+                toast.success('Send orders successful! Please wait for orders confirmation.');
                 clearCart()
             }
         } catch (error) {

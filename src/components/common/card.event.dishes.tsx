@@ -1,5 +1,5 @@
 import {Button} from "@/components/ui/button";
-import {MapPin, ShoppingCart, Star} from "lucide-react";
+import { ShoppingCart, Star} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
@@ -34,8 +34,7 @@ const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                     <div>
                         <CardTitle className="text-lg">{eventMenu.name}</CardTitle>
                         <CardDescription className="flex items-center gap-1 mt-0.5">
-                            <MapPin className="size-4" />
-                            {eventMenu.location} • {eventMenu.cuisine}
+                            {eventMenu.cuisine}
                         </CardDescription>
                     </div>
                     <Badge variant="secondary">{eventMenu.priceRange} $</Badge>

@@ -105,7 +105,7 @@ export const howItWorkItems: THowItWorkItem[] = [
     {
         icon: <Calendar className="text-primary size-8"/>,
         title: "Book & Customize",
-        desc: "Select your dishes, choose date and time, and customize your order details."
+        desc: "Select your dishes, choose date and time, and customize your orders details."
     },
     {
         icon: <ChefHat className="text-primary size-8"/>,

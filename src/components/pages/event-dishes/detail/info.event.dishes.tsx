@@ -3,6 +3,7 @@ import {TListEventMenu} from "@/types";
 import {Badge} from "@/components/ui/badge";
 import HeartToggle from "@/components/common/heart.toggle";
 import AddToCart from "@/components/pages/event-dishes/add.to.cart";
+import {CircleDollarSign, Share2, Star} from "lucide-react";
 
 const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
     return (

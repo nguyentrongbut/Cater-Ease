@@ -1,4 +1,3 @@
-import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
@@ -6,6 +5,7 @@ import {TListEventMenu} from "@/types";
 import HeartToggle from "@/components/common/heart.toggle";
 import ImageWPlaceholder from "@/components/common/image.w.placeholder";
 import AddToCart from "@/components/pages/event-dishes/add.to.cart";
+import {MapPin, ShoppingCart, Star} from "lucide-react";
 
 const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
     return (

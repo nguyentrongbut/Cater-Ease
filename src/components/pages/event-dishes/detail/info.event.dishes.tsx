@@ -1,9 +1,9 @@
-import {CircleDollarSign, Share2, Star} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {TListEventMenu} from "@/types";
 import {Badge} from "@/components/ui/badge";
 import HeartToggle from "@/components/common/heart.toggle";
 import AddToCart from "@/components/pages/event-dishes/add.to.cart";
+import {CircleDollarSign, Share2, Star} from "lucide-react";
 
 const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
     return (
@@ -35,7 +35,6 @@ const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
             <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2 text-sm">
                     <CircleDollarSign className="size-4 text-gray-500 dark:text-gray-300" />
-                    <span>{eventMenu?.priceRange}</span>
                 </div>
             </div>
 
@@ -49,7 +48,6 @@ const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
 
             <AddToCart eventMenu={eventMenu}>
                 <Button className="w-full">
-                    Add Dish To Cart
                 </Button>
             </AddToCart>
         </section>

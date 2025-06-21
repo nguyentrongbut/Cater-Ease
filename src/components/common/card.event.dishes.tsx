@@ -7,6 +7,7 @@ import {TListEventMenu} from "@/types";
 import HeartToggle from "@/components/common/heart.toggle";
 import ImageWPlaceholder from "@/components/common/image.w.placeholder";
 import AddToCart from "@/components/pages/event-dishes/add.to.cart";
+import {MapPin, ShoppingCart, Star} from "lucide-react";
 
 const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
     return (
@@ -60,7 +61,6 @@ const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
 
                 <div className="flex gap-2">
                     <Link href={`/event-dishes/${eventMenu.slug}`} className="flex-1">
-                        <Button className="w-full">View Dishes</Button>
                     </Link>
                 </div>
             </CardContent>

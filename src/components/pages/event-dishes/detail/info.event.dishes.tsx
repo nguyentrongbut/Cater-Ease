@@ -35,6 +35,7 @@ const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
             <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2 text-sm">
                     <CircleDollarSign className="size-4 text-gray-500 dark:text-gray-300" />
+                    {eventMenu?.priceRange}
                 </div>
             </div>
 
@@ -48,6 +49,7 @@ const InfoEventDishes = ({eventMenu}: { eventMenu: TListEventMenu | null }) => {
 
             <AddToCart eventMenu={eventMenu}>
                 <Button className="w-full">
+                    Add to cart
                 </Button>
             </AddToCart>
         </section>

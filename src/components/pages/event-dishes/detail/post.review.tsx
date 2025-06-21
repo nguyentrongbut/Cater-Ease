@@ -46,7 +46,7 @@ const PostReview = ({infoProfile, id} : {infoProfile :TUserInfo | null, id : str
             if (!infoProfile) {
                 router.push("/login");
 
-                return toast('Please log in to review food.', {
+                return toast('Please log in to review dish.', {
                     icon: '🔒',
                     duration: 2000,
                     className: 'bg-white text-black border border-gray-200 text-sm',

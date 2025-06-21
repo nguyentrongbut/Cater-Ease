@@ -9,7 +9,7 @@ import {
     FormMessage
 } from '@/components/ui/form';
 import {z} from 'zod';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ControllerRenderProps, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
@@ -58,6 +58,9 @@ const formSchema = z.object({
         }),
     addressRestaurant: z.string().optional(),
     addressHome: z.string().optional(),
+    name: z.string().min(1, 'Name is required').optional(),
+    phone: z.string().min(1, 'Phone is required').optional(),
+    email: z.string().email('Invalid email address').optional(),
 }).superRefine((data, ctx) => {
     if (data.locationType === 'restaurant' && !data.addressRestaurant?.trim()) {
         ctx.addIssue({
@@ -91,7 +94,7 @@ export type BookingPayload = Omit<BookingForm, 'eventDate'> & {
 
 const FormBooking = (
     {tableNumber, setTableNumber, totalPrice, items}
-    : {tableNumber:number, setTableNumber: (value: number) => void, totalPrice: number, items: TCartItem[]}) => {
+    : { tableNumber: number, setTableNumber: (value: number) => void, totalPrice: number, items: TCartItem[] }) => {
 
     const router = useRouter();
 
@@ -111,8 +114,19 @@ const FormBooking = (
             addressRestaurant: "",
             addressHome: "",
             locationType: "restaurant",
+            name: infoProfile?.name || '',
+            phone: infoProfile?.phone || '',
+            email: infoProfile?.email || ''
         },
     });
+
+    useEffect(() => {
+        if (infoProfile) {
+            form.setValue('name', infoProfile.name || '');
+            form.setValue('phone', infoProfile.phone || '');
+            form.setValue('email', infoProfile.email || '');
+        }
+    }, [infoProfile, form]);
 
     const handleTableNumber = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -126,14 +140,17 @@ const FormBooking = (
     async function onSubmit(values: BookingForm) {
         setIsSubmitting(true);
         try {
-            const payload : BookingPayload = {
+            const payload: BookingPayload = {
                 tableNumber: values.tableNumber,
                 eventDate: values.eventDate.toISOString(),
                 locationType: values.locationType,
                 total: totalPrice,
                 subTotal: totalPrice * tableNumber,
                 items: items,
-                status: "pending"
+                status: "pending",
+                name: values.name,
+                phone: values.phone,
+                email: values.email,
             };
 
             if (values.locationType === 'restaurant') {
@@ -145,6 +162,8 @@ const FormBooking = (
             if (userId) {
                 payload.userId = userId;
             }
+
+            console.log(payload);
 
             const orderId = await postOrder(payload);
 
@@ -290,12 +309,61 @@ const FormBooking = (
                     )}
                 />
 
+                {!infoProfile ? (
+                    <>
+                        <StepGuide step={5} text="Enter personal information"/>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter your name" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="phone"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Phone</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter your phone" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter your email" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </>
+                ) : null}
+
                 {/* Cart Actions */}
                 <div className="flex justify-between">
                     <div className="flex gap-4">
                         <Link href="/event-dishes" className="flex-1">
                             <Button type="button" variant="outline" className="w-full">
-                                <ArrowLeft />
+                                <ArrowLeft/>
                                 Go back to shopping
                             </Button>
                         </Link>
@@ -305,7 +373,7 @@ const FormBooking = (
                             onClick={clearCart}
                             className="text-primary hover:text-primary/70"
                         >
-                            <Trash />
+                            <Trash/>
                             Remove all dishes
                         </Button>
                     </div>

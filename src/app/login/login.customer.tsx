@@ -7,7 +7,7 @@ import {LoginForm} from "@/app/login/page";
 import {UseFormReturn} from "react-hook-form";
 import InputPassword from "@/components/input/input.password";
 
-export type LoginProps = {
+export type Props = {
     onSubmit: (values: LoginForm) => void;
     form: UseFormReturn<LoginForm>;
     isSubmitting: boolean;

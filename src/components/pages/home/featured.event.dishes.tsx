@@ -2,7 +2,7 @@ import SectionWrapper from "@/components/common/section.wrapper";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import ContainerWrapper from "@/components/common/container.wrapper";
-import {getFeaturedEventMenus} from "@/lib/actions/event.menus";
+import {getFeaturedEventMenus} from "@/lib/actions/menu";
 import Heading from "@/components/typography/Heading";
 import ListCardEventDishes from "@/components/common/list.card.event.dishes";
 

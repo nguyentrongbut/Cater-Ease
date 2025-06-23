@@ -4,11 +4,13 @@ import {TEvent} from "@/types";
 
 import cachedAxiosGet from "@/utils/cached.axios.get";
 
-const url = `${process.env.API_URL}/events`;
+const url = `${process.env.API_URL_P}/event`;
 
 export async function getListEvent() {
     try {
         const data:TEvent[] = await cachedAxiosGet(`${url}`, ['events']);
+
+        console.log(data);
         return data;
     } catch (error) {
         console.log(error);

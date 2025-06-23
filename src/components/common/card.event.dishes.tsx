@@ -3,12 +3,11 @@ import { ShoppingCart, Star} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
-import {TListEventMenu} from "@/types";
 import HeartToggle from "@/components/common/heart.toggle";
 import ImageWPlaceholder from "@/components/common/image.w.placeholder";
 import AddToCart from "@/components/pages/event-dishes/add.to.cart";
 
-const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
+const CardEventDishes = ({ eventMenu }: { eventMenu: TMenu }) => {
     return (
         <Card className="overflow-hidden hover:shadow-lg transition-shadow group relative">
             <div className="relative">
@@ -37,7 +36,7 @@ const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                             {eventMenu.cuisine}
                         </CardDescription>
                     </div>
-                    <Badge variant="secondary">{eventMenu.priceRange} $</Badge>
+                    <Badge variant="secondary">{eventMenu.price} $</Badge>
                 </div>
             </CardHeader>
 
@@ -45,22 +44,22 @@ const CardEventDishes = ({ eventMenu }: { eventMenu: TListEventMenu }) => {
                 <div className="flex items-center gap-4 mb-3">
                     <div className="flex items-center gap-1">
                         <Star className="size-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-medium">{eventMenu.rating}</span>
-                        <span className="text-gray-500 text-sm dark:text-gray-200">({eventMenu.reviews})</span>
+                        <span className="font-medium">{eventMenu.averageRating}</span>
+                        <span className="text-gray-500 text-sm dark:text-gray-200">({eventMenu.totalReviews})</span>
                     </div>
                 </div>
 
                 <div className="flex gap-2 mb-4">
-                    {eventMenu.specialties.map((specialty) => (
-                        <Badge key={specialty} variant="outline" className="text-xs">
-                            {specialty}
+                    {eventMenu.events?.map((event) => (
+                        <Badge key={event} variant="outline" className="text-xs">
+                            {event}
                         </Badge>
                     ))}
                 </div>
 
                 <div className="flex gap-2">
                     <Link href={`/event-dishes/${eventMenu.slug}`} className="flex-1">
-                        <Button className="w-full">View Dishes</Button>
+                        <Button className="w-full">View Menu</Button>
                     </Link>
                 </div>
             </CardContent>

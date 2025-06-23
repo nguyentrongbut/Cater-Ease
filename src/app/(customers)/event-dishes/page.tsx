@@ -1,4 +1,4 @@
-import {getListEventMenus} from "@/lib/actions/event.menus";
+import {getListEventMenus} from "@/lib/actions/menu";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import {
     Breadcrumb,
@@ -12,18 +12,16 @@ import Heading from "@/components/typography/Heading";
 import SearchFilterBar from "@/components/pages/event-dishes/search.filter.bar";
 import ListCardEventDishes from "@/components/common/list.card.event.dishes";
 import SectionWrapper from "@/components/common/section.wrapper";
-import {getListEvent} from "@/lib/actions/category.events";
-import {getListCuisine} from "@/lib/actions/genre.cuisine";
+import {getListEvent} from "@/lib/actions/event";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
-const EventMenus = async ({searchParams}: {searchParams : SearchParams}) => {
+const EventMenus = async ({searchParams}: { searchParams: SearchParams }) => {
 
-    const { keyword } = await searchParams;
+    const {keyword} = await searchParams;
     const normalizedKeyword = Array.isArray(keyword) ? keyword[0] : keyword || "";
     const listEventMenus = await getListEventMenus(normalizedKeyword);
     const listEvent = await getListEvent()
-    const listCuisines = await getListCuisine()
 
     return (
         <>
@@ -49,7 +47,7 @@ const EventMenus = async ({searchParams}: {searchParams : SearchParams}) => {
                     <p className="text-gray-600 text-sm mt-2">Discover amazing dishes</p>
                 </div>
 
-                <SearchFilterBar listEvent={listEvent} listCuisines={listCuisines}></SearchFilterBar>
+                <SearchFilterBar listEvent={listEvent}></SearchFilterBar>
 
                 <SectionWrapper>
                     <ListCardEventDishes listEventMenus={listEventMenus}></ListCardEventDishes>

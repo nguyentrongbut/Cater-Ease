@@ -7,7 +7,7 @@ import cachedAxiosGet from "@/utils/cached.axios.get";
 import {revalidateTag} from "next/cache";
 import {ProfileFormUpdate} from "@/components/pages/profile/form.update.profile";
 
-const url = `${process.env.API_URL}/auth`;
+const url = `${process.env.API_URL_P}/auth`;
 
 export async function getProfile() {
     try {
@@ -22,14 +22,12 @@ export async function getProfile() {
         if (!id) return null;
 
         const data: TUserInfo[] = await cachedAxiosGet(
-            `${url}?id=${id}`,
+            `${url}/${id}`,
             ['profile']
         );
 
-        if (data.length < 1) return null;
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const {role, ...rest} = data[0];
+        const {role, ...rest} = data;
 
         return rest;
     } catch (error) {
@@ -39,23 +37,23 @@ export async function getProfile() {
 }
 
 export async function updateProfile(infoProfile: ProfileFormUpdate) {
-    const {id, avatar, ...rest} = infoProfile;
-    const avatarValue = typeof avatar === "string" ? avatar : "";
-    try {
-        const response = await axios.patch(`${url}/${id}`, {
-                ...rest,
-                avatar: avatarValue,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+    const { id, name, email, avatar, phone, address } = infoProfile;
 
-        if (response.data.length < 1) return null;
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+
+    if (avatar instanceof File) {
+        formData.append("avatar", avatar);
+    }
+
+    try {
+        const response = await axios.patch(`${url}/${id}`, formData);
+        if (!response.data) return null;
 
         revalidateTag('profile');
-
         return 200;
     } catch (error) {
         console.error("Error in update profile:", error);

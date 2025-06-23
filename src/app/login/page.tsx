@@ -38,11 +38,12 @@ export default function LoginPage() {
         setIsSubmitting(true);
         try {
             const result = await login(values);
+            console.log(result);
             if (!result) return toast.error('Login failed. Please check your credentials!');
-            const role = result[0]?.role || '';
+            const role = result.user.role || '';
 
             toast.success('Login successful!');
-            if (role !== 'caterer') return router.push('/')
+            if (role !== 'admin') return router.push('/')
             return router.push('/dashboard/caterer');
         } catch (error) {
             console.error('Login error:', error);

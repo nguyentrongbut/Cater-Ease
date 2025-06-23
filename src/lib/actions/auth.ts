@@ -5,26 +5,31 @@ import {LoginForm} from "@/app/login/page";
 import {SignUpForm} from "@/app/sign-up/page";
 import { cookies } from 'next/headers';
 
-const url = `${process.env.API_URL}/auth`;
+const url = `${process.env.API_URL_P}/auth`;
 
 export async function login(values: LoginForm) {
     const cookieStore = await cookies();
+    const {email, password} = values;
     try {
-        const response = await axios.get(`${url}?email=${values.email}&password=${values.password}`);
+        const response = await axios.post(`${url}/login`, {
+            email,
+            password,
+        });
+
         const data = response.data;
+        if (!data) return null;
 
-        if (data.length < 1) return null;
-
-        const {id, role } = data[0];
+        const token = data.token;
+        const {id, role } = data.user;
 
         cookieStore.set({
             name: 'userInfo',
-            value: JSON.stringify({id, role}),
+            value: JSON.stringify({id, role, token}),
             httpOnly: true,
             path: '/',
         });
 
-        return data[0];
+        return data;
     } catch (error) {
         console.log(error);
         return null;
@@ -33,18 +38,19 @@ export async function login(values: LoginForm) {
 
 export async function signUp(values: SignUpForm) {
     const {name, email, phone, password, address} = values;
-    const role = 'customer';
     try {
-        const response = await axios.post(`${url}`, {
+        const response = await axios.post(`${url}/register`, {
             name,
             email,
             phone,
             password,
-            address,
-            role
+            address
         })
 
-        if (response.data.length < 1) return null;
+        const data = response.data;
+
+        if (!data) return null;
+
         return 201
 
     } catch (error) {

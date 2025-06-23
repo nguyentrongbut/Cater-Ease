@@ -7,9 +7,8 @@ import {Slider} from "@/components/ui/slider";
 import {TCuisine, TEvent} from "@/types";
 import {Label} from "@/components/ui/label";
 
-const FilterEventDishes = ({listEvent, listCuisines}: {
-    listEvent: TEvent[] | null,
-    listCuisines: TCuisine[] | null
+const FilterEventDishes = ({listEvent}: {
+    listEvent: TEvent[] | null
 }) => {
     return (
         <>
@@ -25,16 +24,16 @@ const FilterEventDishes = ({listEvent, listCuisines}: {
                         <div>
                             <h3 className="font-semibold mb-3">Cuisine Type</h3>
                             <div className="space-y-2">
-                                {listCuisines && listCuisines.map((cuisine) => (
-                                    <div key={cuisine.name} className="flex items-center space-x-2">
-                                        <Checkbox
-                                            id={cuisine.name}
-                                        />
-                                        <Label htmlFor={cuisine.name} className="text-sm cursor-pointer font-normal">
-                                            {cuisine.name}
-                                        </Label>
-                                    </div>
-                                ))}
+                                {/*{listCuisines && listCuisines.map((cuisine) => (*/}
+                                {/*    <div key={cuisine.name} className="flex items-center space-x-2">*/}
+                                {/*        <Checkbox*/}
+                                {/*            id={cuisine.name}*/}
+                                {/*        />*/}
+                                {/*        <Label htmlFor={cuisine.name} className="text-sm cursor-pointer font-normal">*/}
+                                {/*            {cuisine.name}*/}
+                                {/*        </Label>*/}
+                                {/*    </div>*/}
+                                {/*))}*/}
                             </div>
                         </div>
 
@@ -42,12 +41,12 @@ const FilterEventDishes = ({listEvent, listCuisines}: {
                             <h3 className="font-semibold mb-3">Event Type</h3>
                             <div className="space-y-2">
                                 {listEvent && listEvent.map((event) => (
-                                    <div key={event.name} className="flex items-center space-x-2">
+                                    <div key={event.title} className="flex items-center space-x-2">
                                         <Checkbox
-                                            id={event.name}
+                                            id={event.title}
                                         />
-                                        <Label htmlFor={event.name} className="text-sm cursor-pointer font-normal">
-                                            {event.name}
+                                        <Label htmlFor={event.title} className="text-sm cursor-pointer font-normal">
+                                            {event.title}
                                         </Label>
                                     </div>
                                 ))}

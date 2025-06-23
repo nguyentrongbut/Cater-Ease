@@ -29,28 +29,34 @@ export type TUserInfo = {
     status?: string;
 }
 
-export type TListEventMenu = {
-    id: string,
+export type TMenu = {
+    _id: string,
     name: string,
     description: string,
     slug: string,
-    cuisine: string,
-    rating: number,
-    reviews: number,
-    location: string,
-    minOrder: number,
+    dishes: TDish[],
+    averageRating: number,
     image: string,
-    images: string[],
-    specialties: string[],
-    priceRange: number,
+    events: string[],
+    price: number,
+    totalReviews: number,
+}
+
+export type TDish = {
+    _id: string,
+    name: string,
+    description: string,
+    category: string,
+    price: number,
+    image: string,
 }
 
 export type TEvent = {
-    id: string,
-    name: string,
+    _id: string,
+    title: string,
 }
 
-export type TCuisine = TEvent
+export type TCategory = TEvent
 
 
 export type TQuickStats = {
@@ -66,18 +72,16 @@ export type THowItWorkItem = {
 }
 
 export type TReview = {
-    id: string,
-    foodId: string,
-    name: string,
-    rating: number,
-    createdAt: number,
+    _id: string,
+    userName: string,
     comment: string,
+    rating: number,
+    createdAt: string,
 }
 
 export type TCartItem = {
     id: string,
     name: string,
     price: number,
-    quantity: number,
     image: string,
 }

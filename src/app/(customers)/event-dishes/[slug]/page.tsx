@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import ContainerWrapper from "@/components/common/container.wrapper";
-import {getEventMenu} from "@/lib/actions/event.menus";
+import {getEventMenu} from "@/lib/actions/menu";
 import ImageGallery from "@/components/pages/event-dishes/detail/image.gallery";
 import InfoEventDishes from "@/components/pages/event-dishes/detail/info.event.dishes";
 import CustomerReviews from "@/components/pages/event-dishes/detail/customer.reviews";

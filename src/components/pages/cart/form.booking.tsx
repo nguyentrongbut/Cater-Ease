@@ -82,18 +82,16 @@ type BookingForm = z.infer<typeof formSchema>;
 
 export type BookingPayload = Omit<BookingForm, 'eventDate'> & {
     eventDate: string;
-    userId?: string;
+    authId: string;
     addressRestaurant?: string;
     addressHome?: string;
-    total: number;
-    subTotal: number;
     items: TCartItem[];
-    status: string;
+    note: string;
 };
 
 
 const FormBooking = (
-    {tableNumber, setTableNumber, totalPrice, items}
+    {tableNumber, setTableNumber, items}
     : { tableNumber: number, setTableNumber: (value: number) => void, totalPrice: number, items: TCartItem[] }) => {
 
     const router = useRouter();
@@ -102,7 +100,7 @@ const FormBooking = (
 
     const {infoProfile} = useInfoProfileClient();
 
-    const userId = infoProfile?.id || getAnonymousUserId() || createAnonymousUserId();
+    const authId = infoProfile?.id || getAnonymousUserId() || createAnonymousUserId();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -144,10 +142,7 @@ const FormBooking = (
                 tableNumber: values.tableNumber,
                 eventDate: values.eventDate.toISOString(),
                 locationType: values.locationType,
-                total: totalPrice,
-                subTotal: totalPrice * tableNumber,
                 items: items,
-                status: "pending",
                 name: values.name,
                 phone: values.phone,
                 email: values.email,
@@ -159,11 +154,9 @@ const FormBooking = (
                 payload.addressHome = values.addressHome;
             }
 
-            if (userId) {
-                payload.userId = userId;
+            if (authId) {
+                payload.authId = authId;
             }
-
-            console.log(payload);
 
             const orderId = await postOrder(payload);
 
@@ -308,10 +301,11 @@ const FormBooking = (
                         </FormItem>
                     )}
                 />
+                <StepGuide step={5} text="Enter your note"/>
 
                 {!infoProfile ? (
                     <>
-                        <StepGuide step={5} text="Enter personal information"/>
+                        <StepGuide step={6} text="Enter personal information"/>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <FormField
                                 control={form.control}

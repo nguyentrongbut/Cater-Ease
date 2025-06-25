@@ -1,10 +1,10 @@
 'use client';
 
-import { Search, X } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import {Search, X} from "lucide-react";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import React, {useState} from "react";
+import {useRouter} from "next/navigation";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -19,7 +19,7 @@ const SearchBar = () => {
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (searchQuery.trim() !== "") {
-            router.push(`/event-dishes?keyword=${encodeURIComponent(searchQuery.trim())}`);
+            router.push(`/menu?keyword=${encodeURIComponent(searchQuery.trim())}`);
         }
     };
 
@@ -30,20 +30,20 @@ const SearchBar = () => {
         >
             <div className="flex-1 flex items-center relative">
                 <Input
-                    placeholder="Search dishes ..."
+                    placeholder="Search for the menu by event ..."
                     className="border-0 focus-visible:ring-0 text-gray-900 dark:bg-white"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 {searchQuery && (
                     <span className="mr-1 p-2 cursor-pointer" onClick={clearSearch}>
-                        <X className="h-4 w-4 text-gray-400" />
+                        <X className="h-4 w-4 text-gray-400"/>
                     </span>
                 )}
             </div>
             <Button size="lg" type="submit">
-                <Search className="h-4 w-4 mr-2" />
-                Search Dishes
+                <Search className="h-4 w-4 mr-2"/>
+                Search Menu
             </Button>
         </form>
     );

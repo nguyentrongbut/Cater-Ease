@@ -1,7 +1,7 @@
 import SearchBar from "@/components/pages/home/search.bar";
 import QuickStats from "@/components/pages/home/quick.stats";
 import SectionWrapper from "@/components/common/section.wrapper";
-import FeaturedEventDishes from "@/components/pages/home/featured.event.dishes";
+import FeaturedMenu from "@/components/pages/home/featured.menu";
 import ContainerWrapper from "@/components/common/container.wrapper";
 import HowItWorks from "@/components/pages/home/how.it.works";
 import StartPlanning from "@/components/pages/home/start.planning";
@@ -25,7 +25,7 @@ export default function Home() {
 
             <QuickStats></QuickStats>
 
-            <FeaturedEventDishes></FeaturedEventDishes>
+            <FeaturedMenu></FeaturedMenu>
 
             <HowItWorks></HowItWorks>
 

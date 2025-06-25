@@ -1,24 +1,27 @@
 'use client'
 
 import ImageWithPlaceholder from "@/components/common/image.w.placeholder";
-import {useState} from "react";
+import { useState } from "react";
+import { TInfoImage } from "@/types";
 
-const ImageGallery = ({listImage, name}: { listImage: string[], name: string }) => {
-    const [selectedImage, setSelectedImage] = useState(0)
+const ImageGallery = ({ infoImage, name }: { infoImage: TInfoImage[]; name: string }) => {
+    const [selectedImage, setSelectedImage] = useState(0);
+
     return (
         <div>
             <div>
                 <ImageWithPlaceholder
-                    src={listImage[selectedImage]}
-                    alt={name}
+                    src={infoImage[selectedImage]?.image}
+                    alt={infoImage[selectedImage]?.name || name}
                     width={800}
                     height={320}
                     className="w-full h-80 object-cover rounded-lg"
                 />
             </div>
-            {listImage.length > 1 && (
+
+            {infoImage.length > 1 && (
                 <div className="flex gap-2 mt-4 overflow-x-auto">
-                    {listImage?.map((_, index) => (
+                    {infoImage.map((img, index) => (
                         <div
                             key={index}
                             onClick={() => setSelectedImage(index)}
@@ -29,15 +32,16 @@ const ImageGallery = ({listImage, name}: { listImage: string[], name: string }) 
                             <ImageWithPlaceholder
                                 width={80}
                                 height={80}
-                                src={listImage[index]}
-                                alt={name}
-                                className="w-full h-full object-cover"/>
+                                src={img.image}
+                                alt={img.name}
+                                className="w-full h-full object-cover"
+                            />
                         </div>
                     ))}
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default ImageGallery
+export default ImageGallery;

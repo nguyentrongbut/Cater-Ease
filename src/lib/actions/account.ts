@@ -21,7 +21,7 @@ export async function getProfile() {
 
         if (!id) return null;
 
-        const data: TUserInfo[] = await cachedAxiosGet(
+        const data: TUserInfo= await cachedAxiosGet(
             `${url}/${id}`,
             ['profile']
         );

@@ -2,13 +2,13 @@
 
 import axios from "axios";
 import cachedAxiosGet from "@/utils/cached.axios.get";
-import {TListEventMenu} from "@/types";
+import {TMenu} from "@/types";
 
-const url = `${process.env.API_URL}/menus`;
+const url = `${process.env.API_URL_P}/menu`;
 
 export async function getFeaturedEventMenus() {
     try {
-        const response = await axios.get(`${url}?_sort=rating&_order=desc&_limit=3`);
+        const response = await axios.get(`${url}/top-rated`);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -18,8 +18,8 @@ export async function getFeaturedEventMenus() {
 
 export async function getListEventMenus(keyword: string) {
     try {
-        const data:TListEventMenu[] = await cachedAxiosGet(`${url}?name_like=${keyword}`, ['menus']);
-        return data;
+        const data = await cachedAxiosGet(`${url}?eventName=${keyword}`, ['menus']);
+        return data.data;
     } catch (error) {
         console.log(error);
         return null;
@@ -28,8 +28,8 @@ export async function getListEventMenus(keyword: string) {
 
 export async function getEventMenu(slug: string) {
     try {
-        const data:TListEventMenu[] = await cachedAxiosGet(`${url}?slug=${slug}`, ['menus']);
-        return data[0];
+        const data:TMenu = await cachedAxiosGet(`${url}/${slug}`, ['menus']);
+        return data;
     } catch (error) {
         console.log(error);
         return null;

@@ -4,6 +4,7 @@ import {ColumnDef} from "@tanstack/react-table"
 import dayjs from "dayjs"
 import Link from "next/link";
 import {Badge} from "@/components/ui/badge";
+import {formatCurrency} from "@/utils/formatCurrency";
 
 export type ListOrder = {
     id: string
@@ -32,7 +33,7 @@ export const columnsListOrder: ColumnDef<ListOrder>[] = [
         header: "Total",
         cell: ({row}) => (
             <div>
-                $ {row.original.subTotal}
+                {formatCurrency(row.original.subTotal)}
             </div>
         ),
     },

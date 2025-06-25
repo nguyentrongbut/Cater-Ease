@@ -2,6 +2,7 @@
 
 import {ColumnDef} from "@tanstack/react-table"
 import ImageWithPlaceholder from "@/components/common/image.w.placeholder";
+import {formatCurrency} from "@/utils/formatCurrency";
 
 export type OrderDetail = {
     id: string
@@ -38,7 +39,12 @@ export const columnsOrderDetail: ColumnDef<OrderDetail>[] = [
     },
     {
         accessorKey: "price",
-        header: "Price"
+        header: "Price",
+        cell: ({row}) => (
+            <div>
+                {formatCurrency(row.original.price)}
+            </div>
+        ),
     },
     {
         id: "subTotal",
@@ -47,7 +53,7 @@ export const columnsOrderDetail: ColumnDef<OrderDetail>[] = [
             const {price, quantity} = row.original;
             const subtotal = price * quantity;
 
-            return `$ ${subtotal}`
+            return `${formatCurrency(subtotal)}`
         },
     }
 ]

@@ -30,29 +30,29 @@ export type TUserInfo = {
 }
 
 export type TMenu = {
-    _id: string,
+    id: string,
     name: string,
-    description: string,
     slug: string,
+    description: string,
     dishes: TDish[],
     averageRating: number,
     image: string,
-    events: string[],
+    event: string,
     price: number,
     totalReviews: number,
 }
 
 export type TDish = {
-    _id: string,
+    id: string,
     name: string,
     description: string,
-    category: string,
+    categoryName: string,
     price: number,
     image: string,
 }
 
 export type TEvent = {
-    _id: string,
+    id: string,
     title: string,
 }
 
@@ -72,7 +72,7 @@ export type THowItWorkItem = {
 }
 
 export type TReview = {
-    _id: string,
+    id: string,
     userName: string,
     comment: string,
     rating: number,
@@ -84,4 +84,28 @@ export type TCartItem = {
     name: string,
     price: number,
     image: string,
+    categoryName: string
 }
+
+export type TCartItemQ = TCartItem & {
+    quantity: number;
+}
+
+export type TOrder = {
+    authId: string,
+    name: string,
+    phone: string,
+    email: string,
+    note: string,
+    address: string,
+    eventDate: Date | string,
+    tableNumber: number,
+    items?: TCartItem[],
+}
+
+export type TInfoImage = {
+    name: string,
+    image: string,
+}
+
+export type Params = Promise<{ slug: string }>

@@ -23,7 +23,7 @@ const UpdateProfile = ({infoProfile}: { infoProfile: TUserInfo }) => {
                                     alt="@shadcn"
                                     width={80}
                                     height={80}
-                                    objectFit="cover"
+                                    className="object-cover size-20"
                                 ></Image>
                             </AvatarFallback>
                         </Avatar>

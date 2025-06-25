@@ -10,7 +10,6 @@ export async function getListEvent() {
     try {
         const data:TEvent[] = await cachedAxiosGet(`${url}`, ['events']);
 
-        console.log(data);
         return data;
     } catch (error) {
         console.log(error);

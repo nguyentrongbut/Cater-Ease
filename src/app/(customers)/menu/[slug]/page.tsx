@@ -11,8 +11,11 @@ import {getEventMenu} from "@/lib/actions/menu";
 import ImageGallery from "@/components/pages/event-dishes/detail/image.gallery";
 import InfoEventDishes from "@/components/pages/event-dishes/detail/info.event.dishes";
 import CustomerReviews from "@/components/pages/event-dishes/detail/customer.reviews";
+import {Params, TInfoImage} from "@/types";
+import {groupDishesByCategory} from "@/utils/groupDishesByCategory";
+import ListDishMenu from "@/components/pages/event-dishes/detail/list.dish.menu";
+import Heading from "@/components/typography/Heading";
 
-type Params = Promise<{ slug: string }>
 
 const EventMenuDetail = async ({params}: { params: Params }) => {
     const {slug} = await params
@@ -20,11 +23,25 @@ const EventMenuDetail = async ({params}: { params: Params }) => {
 
     if (!eventMenu) return null;
 
-    const {id, name, rating, images, image, reviews} = eventMenu;
+    const {id, name, averageRating, image, dishes, totalReviews} = eventMenu;
 
-    const listImage: string[] = images
-        ? [image, ...images]
-        : [image];
+    const groupedCategory = groupDishesByCategory(dishes);
+
+    const infoImage: TInfoImage = {
+        name: name,
+        image: image
+    }
+
+    const listInfoImage: TInfoImage[] = [
+        infoImage,
+        ...(
+            dishes?.length
+                ? dishes
+                    .filter(dish => dish.image && dish.name)
+                    .map(dish => ({ name: dish.name, image: dish.image }))
+                : []
+        )
+    ];
 
     return (
         <ContainerWrapper className="py-8">
@@ -40,7 +57,7 @@ const EventMenuDetail = async ({params}: { params: Params }) => {
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            <Link href="/event-dishes">Event Dishes</Link>
+                            <Link href="/menu">Menu</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator>
@@ -56,11 +73,17 @@ const EventMenuDetail = async ({params}: { params: Params }) => {
 
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <ImageGallery listImage={listImage} name={name}></ImageGallery>
+                <ImageGallery infoImage={listInfoImage} name={name}></ImageGallery>
                 <InfoEventDishes eventMenu={eventMenu}></InfoEventDishes>
             </div>
 
-            <CustomerReviews id={id} rating={rating} reviews={reviews}></CustomerReviews>
+            <Heading className="text-2xl mb-6">Menu</Heading>
+
+            <ListDishMenu groupDishesByCategory={groupedCategory}></ListDishMenu>
+
+            <div className="mt-12">
+                <CustomerReviews id={id} rating={averageRating} reviews={totalReviews}></CustomerReviews>
+            </div>
         </ContainerWrapper>
     )
 }

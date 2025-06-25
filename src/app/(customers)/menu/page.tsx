@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import Heading from "@/components/typography/Heading";
-import SearchFilterBar from "@/components/pages/event-dishes/search.filter.bar";
+import SearchFilterBar from "@/components/pages/event-dishes/sort.bar";
 import ListCardEventDishes from "@/components/common/list.card.event.dishes";
 import SectionWrapper from "@/components/common/section.wrapper";
 import {getListEvent} from "@/lib/actions/event";
@@ -37,14 +37,14 @@ const EventMenus = async ({searchParams}: { searchParams: SearchParams }) => {
                             <span>/</span>
                         </BreadcrumbSeparator>
                         <BreadcrumbItem>
-                            <BreadcrumbPage>Event Dishes</BreadcrumbPage>
+                            <BreadcrumbPage>Menu</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
 
                 <div className="mb-8">
-                    <Heading as="h1">Find Your Perfect Event Dishes</Heading>
-                    <p className="text-gray-600 text-sm mt-2">Discover amazing dishes</p>
+                    <Heading as="h1">Find Your Perfect Menu</Heading>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">Discover amazing menus</p>
                 </div>
 
                 <SearchFilterBar listEvent={listEvent}></SearchFilterBar>

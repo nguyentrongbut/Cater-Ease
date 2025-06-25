@@ -8,13 +8,14 @@ import ListCardEventDishes from "@/components/common/list.card.event.dishes";
 
 const listEventMenus = await getFeaturedEventMenus();
 
-const FeaturedEventDishes = () => {
+const FeaturedMenu = () => {
+    console.log("listEventMenus", listEventMenus)
     return (
         <SectionWrapper className="py-16">
             <ContainerWrapper>
                 <div className="flex justify-between items-center mb-8">
-                    <Heading>Featured Event Dishes</Heading>
-                    <Link href="/event-dishes">
+                    <Heading>Featured Menus</Heading>
+                    <Link href="/menu">
                         <Button variant="ghost">View All</Button>
                     </Link>
                 </div>
@@ -25,4 +26,4 @@ const FeaturedEventDishes = () => {
     )
 }
 
-export default FeaturedEventDishes;
+export default FeaturedMenu;

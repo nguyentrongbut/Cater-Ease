@@ -2,10 +2,12 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Separator} from "@/components/ui/separator";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {formatCurrency} from "@/utils/formatCurrency";
 
-const OrderSummaryCart = ({totalPrice, numTable, detail, userId}: {
-    totalPrice: number,
+const OrderSummaryCart = ({totalPrice, numTable, totalTableNumber, detail, userId}: {
+    totalPrice: string,
     numTable: number,
+    totalTableNumber: string,
     detail?: boolean,
     userId?: string
 }) => {
@@ -19,7 +21,7 @@ const OrderSummaryCart = ({totalPrice, numTable, detail, userId}: {
                     <div className="space-y-2.5">
                         <div className="flex justify-between">
                             <span>Subtotal</span>
-                            <span>${totalPrice}</span>
+                            <span>{totalPrice}</span>
                         </div>
                         <div className="flex justify-between pb-2">
                             <span>Table Number</span>
@@ -28,7 +30,7 @@ const OrderSummaryCart = ({totalPrice, numTable, detail, userId}: {
                         <Separator/>
                         <div className="flex justify-between font-bold text-lg">
                             <span>Total</span>
-                            <span>${(totalPrice) * numTable}</span>
+                            <span>{totalTableNumber}</span>
                         </div>
                     </div>
 

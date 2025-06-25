@@ -58,7 +58,7 @@ const CtaAction = async () => {
                                         alt="@shadcn"
                                         width={40}
                                         height={40}
-                                        objectFit="cover"
+                                        className="object-cover size-8"
                                     ></Image>
                                 </AvatarFallback>
                             </Avatar>

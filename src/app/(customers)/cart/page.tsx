@@ -10,6 +10,8 @@ import OrderSummaryCart from "@/components/pages/cart/order.summary.cart";
 import StepGuide from "@/components/common/step.guide";
 import FormBooking from "@/components/pages/cart/form.booking";
 import {useState} from "react";
+import {formatCurrency} from "@/utils/formatCurrency";
+import {groupDishesByCategory} from "@/utils/groupDishesByCategory";
 
 const Cart = () => {
     const {items, updateQuantity, removeItem, getTotalPrice} = useCart();
@@ -18,11 +20,15 @@ const Cart = () => {
 
     const [tableNumber, setTableNumber] = useState(5);
 
+    const convertTotalPrice = formatCurrency(totalPrice);
+    const totalTableNumber = formatCurrency(totalPrice * tableNumber);
+
     // empty cart
     if (items.length === 0) {
         return <EmptyCart/>;
     }
 
+    const groupedCategory = groupDishesByCategory(items);
 
     return (
         <ContainerWrapper className="py-8">
@@ -30,7 +36,7 @@ const Cart = () => {
             <Heading as="h1" className="mb-6">Cart</Heading>
             <StepGuide
                 step={1}
-                text="Review the set of dishes"
+                text="Review the menu"
                 className="mb-3.5"
             ></StepGuide>
 
@@ -42,16 +48,22 @@ const Cart = () => {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-4">
-                                {items.map((item) => (
-                                    <DetailCartItem key={item.id}
-                                                    id={item.id}
-                                                    name={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    quantity={item.quantity}
-                                                    updateQuantity={updateQuantity}
-                                                    removeItem={removeItem}
-                                    ></DetailCartItem>
+                                {Object.entries(groupedCategory).map(([category, dishes]) => (
+                                    <div key={category} className="mb-3">
+                                        <h3 className="text-xl font-semibold mb-4">{category}</h3>
+                                        <div className="space-y-4">
+
+                                        </div>
+                                        <div className="mt-2 flex flex-col gap-5">
+                                            {dishes.map(dish => (
+                                                <DetailCartItem key={dish.id}
+                                                                dish={dish}
+                                                                updateQuantity={updateQuantity}
+                                                                removeItem={removeItem}
+                                                ></DetailCartItem>
+                                            ))}
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </CardContent>
@@ -67,8 +79,9 @@ const Cart = () => {
                 </div>
 
                 <OrderSummaryCart
-                    totalPrice={totalPrice}
                     numTable={tableNumber}
+                    totalPrice={convertTotalPrice}
+                    totalTableNumber={totalTableNumber}
                 ></OrderSummaryCart>
             </div>
         </ContainerWrapper>

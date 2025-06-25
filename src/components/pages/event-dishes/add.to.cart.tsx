@@ -1,30 +1,38 @@
 'use client'
 
 import useCart from "@/hooks/useCart";
-import {TListEventMenu} from "@/types";
+import {TDish} from "@/types";
 import toast from "react-hot-toast";
 import React from "react";
 
-const AddToCart = ({eventMenu, children}: { eventMenu: TListEventMenu | null, children:React.ReactNode }) => {
-    const {addItem} = useCart()
-    if (!eventMenu) return null;
-    const {id, name, priceRange, image} = eventMenu
+const AddToCart = ({eventMenu, children}: {
+    eventMenu: TDish | TDish[] | null;
+    children: React.ReactNode;
+}) => {
+    const {addItem, addItems} = useCart();
 
     const handleAddToCart = () => {
-        addItem({
-            id,
-            name,
-            image,
-            price: priceRange,
-        })
-        toast.success("Added to cart")
-    }
+        if (!eventMenu) return;
 
-    return (
-        <div onClick={handleAddToCart}>
-            {children}
-        </div>
-    )
-}
+        if (Array.isArray(eventMenu)) {
+            addItems(
+                eventMenu.map(({id, name, image, price, categoryName}) => ({
+                    id,
+                    name,
+                    image,
+                    price,
+                    categoryName
+                }))
+            );
+            toast.success("Added menu to cart");
+        } else {
+            const {id, name, price, image, categoryName} = eventMenu;
+            addItem({id, name, image, price, categoryName});
+            toast.success("Added to cart");
+        }
+    };
 
-export default AddToCart
+    return <div onClick={handleAddToCart}>{children}</div>;
+};
+
+export default AddToCart;
